@@ -7,6 +7,8 @@ export default function Experience() {
     const city = useGLTF('./models/city.glb');
     const villan = useGLTF('./models/villan.glb')
     const assistant = useGLTF('./models/assistant.glb')
+
+    
     return <Canvas 
         flat gl={{antialias: false}}
         camera={{near: 2, far: 100}}
