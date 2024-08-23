@@ -1,8 +1,8 @@
-import Experience from "./Experience";
+import GameExperience from "./pages/3dGameExperience/GameExperience";
 
 function App() {
   return (
-      <Experience />
+      <GameExperience />
   );
 }
 
