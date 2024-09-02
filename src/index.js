@@ -10,3 +10,5 @@ root.render(
   </React.StrictMode>
 );
 
+
+export const aiUrl = 'http://192.168.22.112:1234'
