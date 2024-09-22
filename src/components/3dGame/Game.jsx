@@ -19,33 +19,30 @@ export default function Game() {
     const getGameBaseData = async () => {
         const requestData = {
             model: "lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf",
-            messages: [{ role: "user", content: message }],
+            messages: [{ role: "user", content: 'this is hello by tarush gupta' }],
             temperature: 0.7,
             max_tokens: -1,
             stream: false,
         };
 
         try {
-            const response = await fetch("http://192.168.22.112:1234/v1/chat/completions", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(requestData),
-            });
+            // const response = await axios.post("http://192.168.22.112:3000/v1/chat/completions", requestData, {
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            // });
+            const response = await axios.get("http://192.168.22.112:3000/");
 
-            const data = await response.json();
+            console.log('responce: ', response)
 
-            if (response.ok) {
+            // if (response.ok) {
                 // const formattedResponse = formatResponse(
                 //     data.choices[0].message.content
-                // );
-                console.log(data);
-            } else {
-                console.log('error')
-            }
+            //     // );
+            //     console.log(data);
+            // } else {/
         } catch (error) {
-            console.log('error');
+            console.log('error', error.message);
         }
     }
 
@@ -61,7 +58,6 @@ export default function Game() {
     >
         <ambientLight intensity={1} />
         <directionalLight position={[0, 10, 0]} intensity={4} />
-        {/* <Perf /> */}
 
         <Suspense fallback={null}>
             <Assistant />
