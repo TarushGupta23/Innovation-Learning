@@ -1,2 +1,0 @@
-class for rarety
-fix hasSimilarStandard function of book
