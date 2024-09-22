@@ -1,5 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap'); */
+
+/* 
 * {
     padding: 0; margin: 0;
     box-sizing: border-box;
@@ -13,4 +18,14 @@ body, html {
 #root {
     width: 100vw; height: 100vh;
     overflow: scroll;
+} */
+
+:root {
+    --base-red-light: #ff6171;
+    --base-red: #E50C21;
+    --base-red-dark: #a50011;
+
+    --base-blue-light: #759cff;
+    --base-blue: #205fff;
+    --base-blue-dark: #102d77;
 }

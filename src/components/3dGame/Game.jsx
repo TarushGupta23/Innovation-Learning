@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect } from "react";
-import Assistant from "../models/Assistant";
-import Person2 from "../models/Person2";
+import Assistant from "./models/Assistant";
+import Person2 from "./models/Person2";
 import axios from 'axios';
 import { aiUrl } from "../../index";
 
