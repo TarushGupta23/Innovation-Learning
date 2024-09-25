@@ -1,11 +1,20 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
+import RogueGame from "./pages/2dExperience/RogueGame";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  return (
-      <Home darkMode={darkMode} setDarkMode={setDarkMode} />
-  );
+    const [darkMode, setDarkMode] = useState(false);
+
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />
+                
+                <Route path="/rogue" element={<RogueGame />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;

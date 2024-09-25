@@ -22,7 +22,7 @@ body, html {
 /* * {
     transition: bgcolor 0.2s ease;
 } */
-:root {
+/* :root {
     --base-red-light: #ff6171;
     --base-red: #E50C21;
     --base-red-dark: #a50011;
@@ -30,4 +30,4 @@ body, html {
     --base-blue-light: #759cff;
     --base-blue: #205fff;
     --base-blue-dark: #102d77;
-}
+} */

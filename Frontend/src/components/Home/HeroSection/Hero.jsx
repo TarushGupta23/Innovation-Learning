@@ -18,16 +18,16 @@ export default function HeroSection(props) {
       <header className="absolute inset-x-0 top-0 z-50">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8 sticky top-0">
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="https://www.bis.gov.in/" className="-m-1.5 p-1.5">
               <span className="sr-only dark:text-slate-500">Bureau of Indian Standards</span>
               <img
-                alt=""
+                alt="Bis Logo"
                 src="icons/logo.png"
                 className="h-10 w-auto"
               />
             </a>
           </div>
-          <div className="flex lg:hidden items-center gap-4">
+          <div className="flex lg:hidden items-center gap-4" >
             <ThemeButton {...props} />
             <button
               type="button"
@@ -47,7 +47,7 @@ export default function HeroSection(props) {
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
             <ThemeButton {...props} />
-            <a href="#" className="text-sm font-semibold leading-6 text-customBlue" >
+            <a href="/login" className="text-sm font-semibold leading-6 text-customBlue" >
               Log in <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
@@ -56,10 +56,10 @@ export default function HeroSection(props) {
           <div className="fixed inset-0 z-50" />
           <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white dark:bg-slate-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
+              <a href="https://www.bis.gov.in/" className="-m-1.5 p-1.5">
                 <span className="sr-only dark:text-slate-500">Bureau of Indian Standards</span>
                 <img
-                  alt=""
+                  alt="BIS Logo"
                   src="icons/logo.png"
                   className="h-10 w-auto"
                 />
@@ -88,7 +88,7 @@ export default function HeroSection(props) {
                 </div>
                 <div className="py-6">
                   <a
-                    href="#"
+                    href="/login"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800"
                   >
                     Log in
@@ -116,8 +116,8 @@ export default function HeroSection(props) {
         <div className="mx-auto max-w-3xl py-32 sm:py-48 lg:py-56">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-slate-400 dark:ring-slate-300/10 dark:hover:ring-slate-300/20">
-            Explore official Indian standards on our website,{' '}
-              <a href="https://www.bis.gov.in/" className="font-semibold text-customBlue">
+              Explore official Indian standards on our website,{' '}
+              <a href="https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails" className="font-semibold text-customBlue">
                 <span aria-hidden="true" className="absolute inset-0" />
                 visit Now <span aria-hidden="true">&rarr;</span>
               </a>
@@ -137,8 +137,8 @@ export default function HeroSection(props) {
               >
                 Explore Games
               </a>
-              <a href="#" className="text-sm font-semibold leading-6 text-gray-900 dark:text-slate-100">
-                Learn more <span aria-hidden="true">→</span>
+              <a href="https://www.bis.gov.in/the-bureau/about-bis/" className="text-sm font-semibold leading-6 text-gray-900 dark:text-slate-100" >
+                Learn more <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
           </div>

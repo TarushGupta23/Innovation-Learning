@@ -1,5 +1,4 @@
 import { Criminal } from "./Criminal";
-import { difficultyNames } from "./Util";
 import Data from "./SampleData";
 
 class Game {

@@ -28,6 +28,7 @@ const natures = [
 ]
 
 const difficultyNames = ['Rookie', 'Thug', 'Gangster', 'Mafia']
+export const gameDifficultyNames = ['easy', 'balanced', 'hard']
 
 function generateStats(baseStats, level, ivs, increaseStat, decreaseStat) {
     const stats = [];
