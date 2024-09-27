@@ -1,22 +1,22 @@
 // stats:  HP, Atk, Def, Spe
 
-const criminalBaseStats = {
+export const criminalBaseStats = {
     1: [58, 80, 65, 80], // total: 283
     0: [65, 90, 80, 75], // total: 310
     2: [78, 95, 80, 90], // total: 343
     3: [105, 95, 109, 100], // total: 409
 }
 
-const bossBaseStats = {
+export const bossBaseStats = {
     0: [75, 100, 95, 105], // total: 375
     1: [95, 125, 90, 95], // total: 405
     2: [91, 134, 100, 110], // total: 435
     3: [106, 144, 100, 130], // total: 480
 }
 
-const playerBaseStats = [90, 95, 95, 90]; // total: 370
+export const playerBaseStats = [90, 95, 95, 90]; // total: 370
 
-const natures = [
+export const natures = [
     [1, 2, 'ruthless', 'Brave', '+10% Atk, -10% Def'], 
     [1, 3, 'Bold', 'Determined', '+10% Atk, -10% Spe'], 
 
@@ -27,10 +27,10 @@ const natures = [
     [3, 2, 'Aggressive', 'Fearless', '+10% Spe, -10% Def'],
 ]
 
-const difficultyNames = ['Rookie', 'Thug', 'Gangster', 'Mafia']
+export const difficultyNames = ['Rookie', 'Thug', 'Gangster', 'Mafia']
 export const gameDifficultyNames = ['easy', 'balanced', 'hard']
 
-function generateStats(baseStats, level, ivs, increaseStat, decreaseStat) {
+export function generateStats(baseStats, level, ivs, increaseStat, decreaseStat) {
     const stats = [];
     
     const hpStat = Math.floor(((baseStats[0] + ivs[0]) * 2 * level) / 100 + level + 10);
@@ -51,5 +51,3 @@ function generateStats(baseStats, level, ivs, increaseStat, decreaseStat) {
 
     return stats;
 }
-
-export { criminalBaseStats, natures, bossBaseStats, playerBaseStats, difficultyNames, generateStats }
