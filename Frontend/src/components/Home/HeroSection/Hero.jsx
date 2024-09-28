@@ -107,15 +107,15 @@ export default function HeroSection(props) {
         >
           <div
             style={{
-              clipPath:
-                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+              clipPath: 
+                'polygon(60% 0%, 100% 20%, 90% 50%, 100% 100%, 50% 100%, 20% 80%, 0% 50%, 20% 20%, 50% 10%)',
             }}
             className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-customRed to-customBlue opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
           />
         </div>
         <div className="mx-auto max-w-3xl py-32 sm:py-48 lg:py-56">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-slate-400 dark:ring-slate-300/10 dark:hover:ring-slate-300/20">
+            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-slate-400 dark:ring-slate-300/20 dark:hover:ring-slate-300/30">
               Explore official Indian standards on our website,{' '}
               <a href="https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails" className="font-semibold text-customBlue">
                 <span aria-hidden="true" className="absolute inset-0" />
@@ -132,7 +132,7 @@ export default function HeroSection(props) {
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
-                href="#"
+                href="/games"
                 className="rounded-md bg-customBlue px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-customBlueDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-customBlueDark"
               >
                 Explore Games

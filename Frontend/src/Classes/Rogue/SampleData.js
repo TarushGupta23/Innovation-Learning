@@ -8,6 +8,10 @@ export const file = {
     id: 1,
     playerName: 'Tarush Gupta',
     level: 1,
+    lastSaved: {
+        date: '2022-01-01',
+        time: '12:00 pm',
+    },
     difficulty: 2,
     books: ['hlo', 'hloo'],
 }

@@ -2,32 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap'); */
-
 /* 
-* {
-    padding: 0; margin: 0;
-    box-sizing: border-box;
-    user-select: none;
-    font-family: 'inter';
-}
-body, html {
-    width: 100vw; height: 100vh;
-    overflow: hidden;
-}
-#root {
-    width: 100vw; height: 100vh;
-    overflow: scroll;
-} */
-/* * {
-    transition: bgcolor 0.2s ease;
-} */
-/* :root {
-    --base-red-light: #ff6171;
-    --base-red: #E50C21;
-    --base-red-dark: #a50011;
+Light theme:
+    main bgrd : bg-white
+    nav items : text-grey-900
+    divider line : divide-gray-400
+    main heading txt : text-gray-900
+    para text : text-gray-600
+    
+Dark theme:
+    divider line : divide-gray-400
+    main bgrd : bg-slate-900
+    img alt txt : text-slate-500
+    nav items : text-slate-300
+    main heading txt : text-slate-100
+    para txt : text-slate-400
+    shadow : shadow-gray-800
 
-    --base-blue-light: #759cff;
-    --base-blue: #205fff;
-    --base-blue-dark: #102d77;
-} */
+*/

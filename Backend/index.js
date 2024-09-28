@@ -24,11 +24,10 @@ connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 // const User = model('User', UserSchema);
 
 // // Routes
-// app.post('/api/users', async (req, res) => {
-//   const user = new User(req.body);
-//   await user.save();
-//   res.send(user);
-// });
+app.post('/api', async (req, res) => {
+  console.log(req.body);
+  res.send(null)
+});
 
 // app.get('/api/users', async (req, res) => {
 //   const users = await User.find();
