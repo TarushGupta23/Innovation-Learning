@@ -14,7 +14,7 @@ export default function Home() {
                 <FileSelect file={file} func={() => {}} />
                 <span className="absolute top-1/2 -right-8 -translate-y-1/2 text-white font-bold">&gt;</span>
             </li>
-            <OptionBox option="New Game" func={() => {}} />
+            <OptionBox option="New Game" func={() => {navigate("/rogue/new-game")}} />
             <OptionBox option="Options" func={() => {}} />
             <OptionBox option="Bis Website" func={() => navigate("/")} />
         </ul>

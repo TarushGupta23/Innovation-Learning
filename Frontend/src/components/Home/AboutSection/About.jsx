@@ -1,23 +1,10 @@
 import Card from "./Card";
 
 export default function About() {
-    return <section className="bg-white dark:bg-slate-900 z-0">
+    return <section className="relative z-50 min-h-[100vh">
         <div className="relative isolate px-6 py-20 lg:px-8">
-            <div
-                aria-hidden="true"
-                className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-            >
-                <div
-                    style={{
-                        clipPath:
-                            'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                    }}
-                    className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-customRed to-customBlue opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-                />
-            </div>
-
-            <div className="flex relative p-14 gap-20 items-center flex-col-reverse lg:flex-row">
-                <div className="flex flex-col gap-8 flex-1 dark:text-slate-300 text-gray-600">
+            <div className="flex relative m-14 gap-20 items-center flex-col-reverse lg:flex-row z-50">
+                <div className="flex flex-col gap-8 flex-1 dark:text-slate-300 z-90 text-gray-600">
                     <div>
                         <h1 className="text-3xl font-bold dark:text-slate-100 text-gray-900">About Us</h1>
                         <p className="text-justify my-2">
@@ -52,19 +39,6 @@ export default function About() {
                     <Card title="Awareness & Training" text="Through workshops, training, and awareness programs, we educate manufacturers, consumers, and stakeholders about the importance of standards in daily life." />
                 </ul>
             </div>
-            
-            {/* <div
-                aria-hidden="true"
-                className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-            >
-                <div
-                    style={{
-                        clipPath:
-                            'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                    }}
-                    className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-customBlue to-customRed opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-                />
-            </div> */}
         </div>
     </section>
 }
