@@ -1,9 +1,9 @@
 import Card from "./Card";
 
 export default function About() {
-    return <section className="relative z-50 min-h-[100vh">
-        <div className="relative isolate px-6 py-20 lg:px-8">
-            <div className="flex relative m-14 gap-20 items-center flex-col-reverse lg:flex-row z-50">
+    return <section className="relative z-50 min-h-[100vh]">
+        <div className="relative isolate px-2 py-8 lg:py-20 lg:px-8 pt-0">
+            <div className="flex relative m-14 gap-20 items-center flex-col-reverse lg:flex-row z-50 mt-0">
                 <div className="flex flex-col gap-8 flex-1 dark:text-slate-300 z-90 text-gray-600">
                     <div>
                         <h1 className="text-3xl font-bold dark:text-slate-100 text-gray-900">About Us</h1>

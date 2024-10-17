@@ -5,6 +5,7 @@ import RogueGame from "./pages/2dExperience/RogueGame";
 import GameExperience from "./pages/3dGameExperience/GameExperience";
 import NewGame from "./pages/2dExperience/NewGame";
 import GameSettings from "./pages/2dExperience/GameSettings";
+import Login from "./pages/Home/Login";
 
 function App() {
     const [darkMode, setDarkMode] = useState(false);
@@ -13,6 +14,7 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />
+                <Route path="/login" element={<Login darkMode={darkMode} setDarkMode={setDarkMode} />} />
                 
                 <Route path="/rogue" element={<RogueGame />} />
                 <Route path="/rogue/new-game" element={<NewGame />} />

@@ -1,4 +1,5 @@
 import About from "../../components/Home/AboutSection/About";
+import Footer from "../../components/Home/Footer/Footer";
 import Games from "../../components/Home/GameSection/Games";
 import HeroSection from "../../components/Home/HeroSection/Hero";
 import Navbar from "../../components/Home/HeroSection/Navbar";
@@ -17,7 +18,7 @@ export default function Home(props) {
                 />
             </div>
         </div>
-        <HeroSection {...props} />
+        <HeroSection />
         <div className="relative isolate pointer-events-none">
             <div
                 aria-hidden="true"
@@ -57,5 +58,6 @@ export default function Home(props) {
                     }} />
             </div>
         </div>
+        <Footer />
     </div>
 }
