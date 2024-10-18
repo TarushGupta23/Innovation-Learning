@@ -1,28 +1,26 @@
-import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import RogueGame from "./pages/2dExperience/RogueGame";
-import GameExperience from "./pages/3dGameExperience/GameExperience";
-import NewGame from "./pages/2dExperience/NewGame";
-import GameSettings from "./pages/2dExperience/GameSettings";
-import Login from "./pages/Home/Login";
+import React, { useRef } from "react";
+import Testing from "./pages/testing";
 
-function App() {
-    const [darkMode, setDarkMode] = useState(false);
+const App = () => {
+    const testingRef = useRef();
+
+    const getPosition = () => {
+        if (testingRef.current) {
+            // using react.useRef to get value of slider
+            const position = testingRef.current.getSpanPosition(); 
+            alert("Current Span Position: " + position);
+        }
+    };
 
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />
-                <Route path="/login" element={<Login darkMode={darkMode} setDarkMode={setDarkMode} />} />
-                
-                <Route path="/rogue" element={<RogueGame />} />
-                <Route path="/rogue/new-game" element={<NewGame />} />
-                <Route path="/rogue/settings" element={<GameSettings />} />
-                <Route path="/3d" element={<GameExperience />} />
-            </Routes>
-        </Router>
+        <div className="bg-red-50 w-96 h-40 p-10"> 
+{/* my component will fit according to user's container size */}
+            <Testing ref={testingRef} min={20} max={30} units="cm" accuracy={0} /> 
+{/* this is my component with optional props: min, max, units, direction, accuracy */}
+            <button onClick={getPosition} className="bg-blue-400 rounded my-4 p-1">Get Span Position</button> 
+{/* sample botton to get value */}
+        </div>
     );
-}
+};
 
 export default App;
