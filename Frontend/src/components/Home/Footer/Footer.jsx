@@ -41,7 +41,7 @@ export default function Footer() {
                     </li>
                 </ul>
 
-                <p className="text-center text-gray-900">© 2024 Bureau of Indian Standards. All rights reserved.</p>
+                <p className="text-center dark:text-gray-100 text-gray-900">© 2024 Bureau of Indian Standards. All rights reserved.</p>
             </div>
         </div>
     </footer>

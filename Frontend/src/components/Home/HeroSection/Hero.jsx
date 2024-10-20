@@ -12,10 +12,12 @@ export default function HeroSection() {
           </div>
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl dark:text-slate-100">
-            Bureau of Indian Standards
+            {/* Bureau of Indian Standards */}
+            Innovative Learning
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-slate-400">
-            Empowering India through standards. BIS ensures quality, safety, and reliability in products and services. Stay informed with the latest Indian Standards.
+            {/* Empowering India through standards. BIS ensures quality, safety, and reliability in products and services. Stay informed with the latest Indian Standards. */}
+            Empowering India through learning. We ensure quality, safety, and reliability in services. Stay informed with the latest Information.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a

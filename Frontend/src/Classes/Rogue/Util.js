@@ -27,8 +27,9 @@ export const natures = [
     [3, 2, 'Aggressive', 'Fearless', '+10% Spe, -10% Def'],
 ]
 
-export const difficultyNames = ['Rookie', 'Thug', 'Gangster', 'Mafia']
+export const criminalDifficultyNames = ['Rookie', 'Thug', 'Gangster', 'Mafia']
 export const gameDifficultyNames = ['easy', 'balanced', 'hard']
+export const startBookAmt = [8, 5, 3];
 
 export function generateStats(baseStats, level, ivs, increaseStat, decreaseStat) {
     const stats = [];

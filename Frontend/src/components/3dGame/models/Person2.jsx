@@ -5,10 +5,10 @@ export default function Person2() {
     const model = useGLTF('./models/person2.glb')
     const animation = useAnimations(model.animations, model.scene)
     const rightPos = [3.17, -2.43, 0]
-    useEffect(() => {
-        const action = animation.actions['mixamo.com']
-        action.reset().play();
-    }, [])
+    // useEffect(() => {
+    //     const action = animation.actions['mixamo.com']
+    //     action.reset().play();
+    // }, [])
     return <primitive object={model.scene} position={rightPos} scale={0.24}/>
 }
 

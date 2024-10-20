@@ -2,9 +2,9 @@ import { gameDifficultyNames } from "../../../Classes/Rogue/Util";
 
 export default function FileSelect({file, func}) {
     return (
-        <div className="cursor-pointer relative px-20 py-5 bg-gradient-to-b from-customRedLight to-customRedDark rounded-b-xl rounded-r-xl shadow-md text-white flex flex-col gap-2" onClick={func}>
-            <span className="absolute top-0 left-0 bg-customRedDark -translate-y-full px-4 py-1 rounded-t-xl w-[98%] h-4"></span>
-            <p className="absolute top-0 left-0 bg-customRedLight -translate-y-full px-4 py-1 rounded-t-xl w-1/4">
+        <div className="cursor-pointer relative px-20 py-5 bg-gradient-to-br from-slate-700 to-slate-900 rounded-b-xl rounded-r-xl shadow-md text-white flex flex-col gap-2" onClick={func}>
+            <span className="absolute top-0 left-0 bg-slate-800 -translate-y-full px-4 py-1 rounded-t-xl w-[98%] h-4"></span>
+            <p className="absolute top-0 left-0 bg-slate-700 -translate-y-full px-4 py-1 rounded-t-xl w-1/4">
                 <span>File Slot: {file.id}</span> 
             </p>
             <h2 className="w-96 font-bold text-4xl">

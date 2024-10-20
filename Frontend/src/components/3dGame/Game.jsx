@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect } from "react";
 import Assistant from "./models/Assistant";
-import Person2 from "./models/Person2";
+import Person1 from "./models/Person5";
 
 export default function Game() {
 
@@ -15,7 +15,7 @@ export default function Game() {
 
         <Suspense fallback={null}>
             <Assistant />
-            <Person2 />
+            <Person1 />
         </Suspense>
 
     </Canvas>
