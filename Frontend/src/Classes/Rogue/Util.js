@@ -30,6 +30,8 @@ export const natures = [
 export const criminalDifficultyNames = ['Rookie', 'Thug', 'Gangster', 'Mafia']
 export const gameDifficultyNames = ['easy', 'balanced', 'hard']
 export const startBookAmt = [8, 5, 3];
+export const maxBagSize = [30, 20, 15];
+export const bookRarity = ['common', 'rare', 'epic']
 
 export function generateStats(baseStats, level, ivs, increaseStat, decreaseStat) {
     const stats = [];

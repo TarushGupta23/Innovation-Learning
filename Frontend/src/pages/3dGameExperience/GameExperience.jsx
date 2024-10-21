@@ -17,10 +17,8 @@ export default function GameExperience() {
                     'Content-Type': 'application/json'
                 }
             })
-  
             console.log(responce.data);
         }
-  
         // getInitialResp();
     }, [])
 
