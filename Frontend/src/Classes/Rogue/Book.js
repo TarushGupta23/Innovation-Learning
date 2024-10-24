@@ -1,9 +1,9 @@
 export default class Book {
     constructor(name, standards, rarity, discovered = false) {
-        this.name = name; // name of book
-        this.standards = standards; // list of standards it contains
-        this.rarity = rarity; // rarity of book
-        this.discovered = discovered; // is the book discovered
+        this.name = name; // name of book : string
+        this.standards = standards; // list of standards it contains : string
+        this.rarity = rarity; // rarity of book : string
+        this.discovered = discovered; // is the book discovered : boolean
     }
 
     hasExactStandard(standard) {

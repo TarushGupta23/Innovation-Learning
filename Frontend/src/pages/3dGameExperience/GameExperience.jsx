@@ -11,7 +11,7 @@ export default function GameExperience() {
     useEffect(() => {
         const getInitialResp = async () => {
             const responce = await axios.post(`${serverUrl}/3d/generate`, {
-                content : "hello", key: "tarush11"
+                content : "hello"
             }, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ export default function GameExperience() {
             })
             console.log(responce.data);
         }
-        // getInitialResp();
+        getInitialResp();
     }, [])
 
     return (

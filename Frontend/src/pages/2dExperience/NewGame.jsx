@@ -1,19 +1,22 @@
-// name input + level difficulty
-// books input
-
 import { useState } from "react";
 import PlayerData from "../../components/2dGame/NewGame/PlayerData";
 import BooksSelect from "../../components/2dGame/NewGame/BooksSelect";
 
 export default function NewGame() {
     const [depth, setDepth] = useState(0)
+    const [playerInfo, setPlayerInfo] = useState({
+        name: "",
+        difficulty: 0,
+        nature: 0,
+        books: []
+    })
 
     const renderPage = () => {
         switch (depth) {
             case 0:
-                return <PlayerData setDepth={setDepth} />
+                return <PlayerData setDepth={setDepth} setPlayerInfo={setPlayerInfo} />
             case 1:
-                return <BooksSelect setDepth={setDepth} />;
+                return <BooksSelect setDepth={setDepth} setPlayerInfo={setPlayerInfo} playerInfo={playerInfo} />;
         }
     }
     return <div className="w-full h-[100vh] relative bg-slate-900">

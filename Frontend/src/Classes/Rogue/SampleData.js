@@ -42,5 +42,5 @@ export const books = [
     new Book('Is-005', ['IS-05'], 'epic', true),
     new Book('Is-006', ['IS-06'], 'epic', false),
     new Book('Is-007', ['IS-07'], 'epic', true),
-    new Book('Is-008', ['IS-08'], 'epic', false),
+    new Book('Is-008', ['IS-08', 'IS-08', 'IS-08'], 'epic', false),
 ]

@@ -1,3 +1,3 @@
-export default function GameSettings() {
+export default function GameTutorial() {
     return <>These are game settings</>
 }

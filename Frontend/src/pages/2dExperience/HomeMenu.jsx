@@ -4,7 +4,7 @@ import FileSelect from "../../components/2dGame/HomeMenu/FileSelect";
 import OptionBox from "../../components/2dGame/HomeMenu/OptionBox";
 import { file } from "../../Classes/Rogue/SampleData";
 
-export default function Home() {
+export default function HomeMenu() {
     const navigate = useNavigate();
 
     return <div className="w-full h-[100vh] relative">
@@ -41,7 +41,7 @@ export default function Home() {
                 <span className="absolute top-1/2 -right-8 -translate-y-1/2 text-white font-bold">&gt;</span>
             </li>
             <OptionBox option="New Game" func={() => {navigate("/rogue/new-game")}} />
-            <OptionBox option="Options" func={() => {}} />
+            <OptionBox option="Tutorial" func={() => {navigate("/rogue/tutorial")}} />
             <OptionBox option="Bis Website" func={() => navigate("/")} />
         </ul>
         <img src="icons/logo.png" alt="bis logo" className="h-20 absolute bottom-6 right-6" />
