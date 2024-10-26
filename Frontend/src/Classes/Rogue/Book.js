@@ -1,8 +1,10 @@
+import { bookRarity } from "./Util";
+
 export default class Book {
     constructor(name, standards, rarity, discovered = false) {
         this.name = name; // name of book : string
-        this.standards = standards; // list of standards it contains : string
-        this.rarity = rarity; // rarity of book : string
+        this.standards = standards; // standards it contains : IS[]
+        this.rarity = bookRarity[rarity]; // rarity of book : integer
         this.discovered = discovered; // is the book discovered : boolean
     }
 

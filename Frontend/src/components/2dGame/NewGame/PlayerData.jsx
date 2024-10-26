@@ -35,13 +35,13 @@ export default function PlayerData({ setDepth, setPlayerInfo }) {
 
             <div>
                 <h2>Difficulty: </h2>
-                <div class="inline-flex space-x-2 w-full">
+                <div className="inline-flex space-x-2 w-full">
                     {
                         gameDifficultyNames.map((difficulty, index) => (
                             <label className="flex-1 relative group" htmlFor={difficulty} key={difficulty} onClick={() => setPageInfo({...pageInfo, difficulty: index})}>
                                 <div className={`px-4 py-2 bg-gradient-to-br from-slate-950 to-slate-900 font-semibold ${borderArr[index]} cursor-pointer focus:outline-none relative overflow-hidden capitalize`}>
                                     <input 
-                                        id={difficulty} type="radio" name="difficulty" value={difficulty} 
+                                        id={difficulty} type="radio" name="difficulty" value={difficulty} readOnly
                                         className="peer sr-only" checked={pageInfo.difficulty === index} 
                                     />
                                     {difficulty}
@@ -55,7 +55,7 @@ export default function PlayerData({ setDepth, setPlayerInfo }) {
 
             <div>
                 <h2 htmlFor="nature">Nature: </h2>
-                <div class="w-full grid grid-cols-3 gap-2">
+                <div className="w-full grid grid-cols-3 gap-2">
                     {
                         natures.map((nature, index) => {
                             return <div key={nature[3]} onClick={() => setPageInfo({...pageInfo, nature: index})}

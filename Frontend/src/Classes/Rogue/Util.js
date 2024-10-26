@@ -1,5 +1,7 @@
 // stats:  HP, Atk, Def, Spe
 
+import Item from "./Item";
+
 export const criminalBaseStats = {
     1: [58, 80, 65, 80], // total: 283
     0: [65, 90, 80, 75], // total: 310
@@ -54,3 +56,19 @@ export function generateStats(baseStats, level, ivs, increaseStat, decreaseStat)
 
     return stats;
 }
+
+export const gameItemList = [
+
+    new Item("Heal Potion", 1, "dustbin", "common", "Restores 10 HP", "player", (player) => {
+        player.stats[0] += 10;
+    }),
+
+    new Item("Antidote", 1, "dustbin", "common", "Cures poison", "player", (player) => {
+        player.stats[3] = 0;
+    }),
+
+    new Item("Super Potion", 1, "dustbin", "common", "Restores 20 HP", "player", (player) => {
+        player.stats[0] += 20;
+    }),
+
+];

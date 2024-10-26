@@ -9,4 +9,4 @@ root.render(
 );
 
 
-export const serverUrl = 'http://192.168.29.203:3200';
+export const serverUrl = 'http://192.168.29.67:3200';

@@ -1,11 +1,26 @@
-import { useState } from "react";
-import { books } from "../../../Classes/Rogue/SampleData";
+import { useEffect, useState } from "react";
 import { startBookAmt } from "../../../Classes/Rogue/Util";
 import Book from "../Items/Book";
+import BookModel from "../../../Classes/Rogue/Book";
+import IS from "../../../Classes/Rogue/IS";
+import { serverUrl } from "../../..";
+import axios from "axios";
 
 export default function BooksSelect({ setDepth, setPlayerInfo, playerInfo }) {
-    const difficulty = playerInfo.difficulty;
+    const [books, setBooks] = useState([]);
     const [selectedBooks, setSelectedBooks] = useState([]);
+    const difficulty = playerInfo.difficulty;
+
+    useEffect(() => {
+        const getBooks = async () => {
+            const responce = await axios.get(`${serverUrl}/standards-list`)
+            console.log('asked for books')
+            setBooks(responce.data.map(d => new BookModel(d.name, [new IS(d.id, d.name, d.content)], 0, true)));
+        }
+
+        getBooks();
+    }, [])
+
     const selectBook = (book) => {
         if (selectedBooks.includes(book)) {
             setSelectedBooks(selectedBooks.filter((b) => b !== book));
@@ -23,9 +38,9 @@ export default function BooksSelect({ setDepth, setPlayerInfo, playerInfo }) {
             return
         }
         setPlayerInfo({...playerInfo, books: selectedBooks});
-        // store data in database and start game
         setDepth(3);
     }
+
     return (
         <div className="h-full relative p-12 flex gap-8 flex-col">
             <h1 className="text-3xl font-bold text-white text-center">Select upto {startBookAmt[difficulty]} Books</h1>
