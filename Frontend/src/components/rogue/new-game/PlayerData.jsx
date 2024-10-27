@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { gameDifficultyNames, natures } from "../../../Classes/Rogue/Util";
+import { gameDifficultyNames, natures } from "../../../data/rogue-data";
 
 export default function PlayerData({ setDepth, setPlayerInfo }) {
     const colorArr = ["bg-green-400", "bg-yellow-400", "bg-red-600"];

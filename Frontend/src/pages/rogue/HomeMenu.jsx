@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
-import FileSelect from "../../components/2dGame/HomeMenu/FileSelect";
-import OptionBox from "../../components/2dGame/HomeMenu/OptionBox";
-import { file } from "../../Classes/Rogue/SampleData";
+import FileSelect from "../../components/rogue/home/FileSelect";
+import OptionBox from "../../components/rogue/home/OptionBox";
+import { file } from "../../temp-helper";
 
 export default function HomeMenu() {
     const navigate = useNavigate();

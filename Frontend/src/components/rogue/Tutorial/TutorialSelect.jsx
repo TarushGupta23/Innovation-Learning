@@ -1,4 +1,4 @@
-import OptionBox from '../HomeMenu/OptionBox';
+import OptionBox from '../home/OptionBox';
 import {useNavigate} from 'react-router-dom';
 
 export default function TutorialSelect({ setPage }) {

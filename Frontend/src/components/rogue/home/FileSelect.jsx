@@ -1,4 +1,4 @@
-import { gameDifficultyNames } from "../../../Classes/Rogue/Util";
+import { gameDifficultyNames } from "../../../data/rogue-data";
 
 export default function FileSelect({file, func}) {
     return (

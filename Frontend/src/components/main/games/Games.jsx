@@ -14,7 +14,7 @@ export default function Games() {
                 </div>
 
                 <div className="w-full relative flex justify-center gap-4 md:flex-row flex-col">
-                    <GameCard dest="/3d" img="quiz.png" name="ISO Raider" content="Immerse yourself in a virtual 3D environment where you explore different industries and uncover the role that BIS standards play in maintaining quality and safety. Solve puzzles and challenges to progress through various levels!" />
+                    <GameCard dest="/clueshade" img="quiz.png" name="ClueShade" content="Immerse yourself in a virtual 3D environment where you explore different industries and uncover the role that BIS standards play in maintaining quality and safety. Solve puzzles and challenges to progress through various levels!" />
                     <GameCard dest="/rogue" img="quiz.png" name="Rogue Adventure" content="Join our detective in a thrilling adventure where BIS Standards are your best weapon against criminals! As you progress through the levels, apply the right standards to defeat your enemies and win rewards."/>
                     <GameCard dest="/" img="quiz.png" name="Quizzes" content="Sharpen your understanding of Indian standards with our engaging quizzes. Each quiz is designed to test your knowledge of various products and services, ensuring you are aware of the importance of standards in everyday life." />
                 </div>

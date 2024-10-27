@@ -1,4 +1,4 @@
-import { gameItemList } from "../../../classes/rogue/Util";
+import { gameItemList } from "../../../data/rogue-data";
 
 export default function TutorialItems({ setPage }) {
     return <div className="flex flex-col gap-4 h-full bg-slate-900 text-white">

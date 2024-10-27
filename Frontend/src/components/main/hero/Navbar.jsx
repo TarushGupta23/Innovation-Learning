@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import ThemeButton from '../../Util/ThemeButton/ThemeButton'
+import ThemeButton from '../theme-button/ThemeButton'
 
 const navigation = [
   { name: 'About', href: '#' },

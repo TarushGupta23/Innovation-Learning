@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { startBookAmt } from "../../../Classes/Rogue/Util";
-import Book from "../Items/Book";
-import BookModel from "../../../Classes/Rogue/Book";
-import IS from "../../../Classes/Rogue/IS";
-import { serverUrl } from "../../..";
+import { startBookAmt } from "../../../data/rogue-data";
+import Book from "../items/Book";
+import BookModel from "../../../classes/rogue/Book";
+import IS from "../../../classes/rogue/IS";
+import { serverUrl } from "../../../temp-helper";
 import axios from "axios";
-import { email } from "../../../Classes/Rogue/SampleData";
+import { email } from "../../../temp-helper";
 
 export default function BooksSelect({ setDepth, setPlayerInfo, playerInfo }) {
     const [books, setBooks] = useState([]);

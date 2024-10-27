@@ -1,8 +1,8 @@
-import About from "../../components/Home/AboutSection/About";
-import Footer from "../../components/Home/Footer/Footer";
-import Games from "../../components/Home/GameSection/Games";
-import HeroSection from "../../components/Home/HeroSection/Hero";
-import Navbar from "../../components/Home/HeroSection/Navbar";
+import About from "../../components/main/about/About";
+import Footer from "../../components/main/footer/Footer";
+import Games from "../../components/main/games/Games";
+import HeroSection from "../../components/main/hero/Hero";
+import Navbar from "../../components/main/hero/Navbar";
 
 export default function Home(props) {
     return <div className="bg-white dark:bg-slate-900 relative z-0">

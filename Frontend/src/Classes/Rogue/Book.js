@@ -1,11 +1,11 @@
-import { bookRarity } from "./Util";
+import { bookRarity } from "../../data/rogue-data";
 
 export default class Book {
-    constructor(name, standards, rarity, discovered = false) {
+    constructor(name, standards = [], rarity = 0, effects = []) {
         this.name = name; // name of book : string
         this.standards = standards; // standards it contains : IS[]
         this.rarity = bookRarity[rarity]; // rarity of book : integer
-        this.discovered = discovered; // is the book discovered : boolean
+        this.effects = effects;
     }
 
     hasExactStandard(standard) {

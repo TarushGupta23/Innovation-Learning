@@ -1,4 +1,4 @@
-import { generateStats, playerBaseStats } from './Util.js';
+import { generateStats, playerBaseStats } from '../../data/rogue-data';
 
 export class Player {
     constructor(name, level, natureIdx, books, items, money) {

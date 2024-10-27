@@ -1,6 +1,6 @@
 import { useState } from "react";
-import PlayerData from "../../components/2dGame/NewGame/PlayerData";
-import BooksSelect from "../../components/2dGame/NewGame/BooksSelect";
+import PlayerData from "../../components/rogue/new-game/PlayerData";
+import BooksSelect from "../../components/rogue/new-game/BooksSelect";
 
 export default function NewGame() {
     const [depth, setDepth] = useState(0)

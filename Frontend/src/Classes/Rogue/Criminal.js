@@ -1,4 +1,4 @@
-import { bossBaseStats, criminalBaseStats, natures } from "./Util";
+import { bossBaseStats, criminalBaseStats, natures } from "../../data/rogue-data";
 
 export class Criminal {
     constructor(name, crime, description, exactIS, relatableIS, level, levelDifficulty) {

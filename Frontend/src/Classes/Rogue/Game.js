@@ -1,5 +1,5 @@
 import { Criminal } from "./Criminal";
-import Data from "./SampleData";
+import Data from "../../temp-helper";
 
 class Game {
     constructor(player, level) {

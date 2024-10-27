@@ -2,7 +2,7 @@ import Game from '../../components/clue-shade/Game';
 import './style.css';
 import TypeWriter from '../../components/clue-shade/TypeWriter';
 import { useEffect } from 'react';
-import { serverUrl } from '../..';
+import { serverUrl } from '../../temp-helper';
 import axios from 'axios';
 
 export default function GameExperience() {
