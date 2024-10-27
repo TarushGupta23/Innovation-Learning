@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect } from "react";
-import Assistant from "./models/Assistant";
-import Person1 from "./models/Person5";
+import Person from "./Person";
+import { assistant, person1 } from "../../data/clue-shade-data";
 
 export default function Game() {
 
@@ -14,8 +14,8 @@ export default function Game() {
         <directionalLight position={[0, 10, 0]} intensity={4} />
 
         <Suspense fallback={null}>
-            <Assistant />
-            <Person1 />
+            <Person person={assistant} />
+            <Person person={person1} rightAlign />
         </Suspense>
 
     </Canvas>

@@ -1,6 +1,6 @@
-import Game from '../../components/3dGame/Game';
+import Game from '../../components/clue-shade/Game';
 import './style.css';
-import TypeWriter from '../../components/3dGame/TypeWriter';
+import TypeWriter from '../../components/clue-shade/TypeWriter';
 import { useEffect } from 'react';
 import { serverUrl } from '../..';
 import axios from 'axios';

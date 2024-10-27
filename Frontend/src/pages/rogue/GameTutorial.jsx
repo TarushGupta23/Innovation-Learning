@@ -1,6 +1,6 @@
 import { useState } from "react";
-import TutorialSelect from "../../components/2dGame/Tutorial/TutorialSelect";
-import TutorialItems from "../../components/2dGame/Tutorial/TutorialItems";
+import TutorialSelect from "../../components/rogue/Tutorial/TutorialSelect";
+import TutorialItems from "../../components/rogue/Tutorial/TutorialItems";
 
 export default function GameTutorial() {
     const [page, setPage] = useState('select')

@@ -1,5 +1,3 @@
-import Book from "./Book";
-
 export const name = 'Villan Name'; 
 export const crime = 'Villan Crime'
 export const description = 'Villan Crime Description'
@@ -18,29 +16,4 @@ export const file = {
     books: ['hlo', 'hloo'],
 }
 
-export const books = [
-    new Book('Is-001', ['IS-01'], 'common', false),
-    new Book('Is-002', ['IS-02'], 'common', false),
-    new Book('Is-003', ['IS-03'], 'common', false),
-    new Book('Is-004', ['IS-04'], 'common', true),
-    new Book('Is-005', ['IS-05'], 'common', true),
-    new Book('Is-006', ['IS-06'], 'common', false),
-    new Book('Is-007', ['IS-07'], 'common', true),
-    new Book('Is-008', ['IS-08'], 'common', false),
-    new Book('Is-001', ['IS-01'], 'rare', false),
-    new Book('Is-002', ['IS-02'], 'rare', false),
-    new Book('Is-003', ['IS-03'], 'rare', false),
-    new Book('Is-004', ['IS-04'], 'rare', true),
-    new Book('Is-005', ['IS-05'], 'rare', true),
-    new Book('Is-006', ['IS-06'], 'rare', false),
-    new Book('Is-007', ['IS-07'], 'rare', true),
-    new Book('Is-008', ['IS-08'], 'rare', false),
-    new Book('Is-001', ['IS-01'], 'epic', false),
-    new Book('Is-002', ['IS-02'], 'epic', false),
-    new Book('Is-003', ['IS-03'], 'epic', false),
-    new Book('Is-004', ['IS-04'], 'epic', true),
-    new Book('Is-005', ['IS-05'], 'epic', true),
-    new Book('Is-006', ['IS-06'], 'epic', false),
-    new Book('Is-007', ['IS-07'], 'epic', true),
-    new Book('Is-008', ['IS-08', 'IS-08', 'IS-08'], 'epic', false),
-]
+export const email = 'test@example.com'

@@ -64,7 +64,7 @@ app.post('/add-player', async (req, res) => {
 app.get('/standards-list', async (req, res) => {
     try {
         const data = await BookModel.find({});
-        console.log(data);
+        console.log("received list of standards");
         res.send(data.map(d => (
             { id: d._id, name: d.name, content: d.content }
         )));
@@ -117,27 +117,25 @@ app.get('/2d/books', async (req, res) => {
 });
 
 app.post('/3d/generate', async (req, res) => {
-    return res.send("hlo");
+    lastReq[req.body.key] = req.body.content;
+    setTimeout(() => delete lastReq[req.body.key], 3000)
 
-    // lastReq[req.body.key] = req.body.content;
-    // setTimeout(() => delete lastReq[req.body.key], 3000)
-
-    // const response = await axios.post(process.env.STORY_GENERATOR_URL, {
-    //     model: "lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf",
-    //     messages: [
-    //         { role: "user", content: req.body.content }
-    //     ],
-    //     temperature: 0.7,
-    //     max_tokens: -1,
-    //     stream: false
-    // }, {
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     }
-    // });
+    const response = await axios.post(process.env.STORY_GENERATOR_URL, {
+        model: "lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf",
+        messages: [
+            { role: "user", content: req.body.content }
+        ],
+        temperature: 0.7,
+        max_tokens: -1,
+        stream: false
+    }, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
     
-    // const formatedResponse = formatResponse(response.data.choices[0].message.content)
-    // res.send({ story: formatedResponse })
+    const formatedResponse = formatResponse(response.data.choices[0].message.content)
+    res.send({ story: formatedResponse })
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

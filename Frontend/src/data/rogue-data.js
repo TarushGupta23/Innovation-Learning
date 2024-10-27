@@ -1,6 +1,6 @@
 // stats:  HP, Atk, Def, Spe
 
-import Item from "./Item";
+import Item from "../classes/Rogue/Item";
 
 export const criminalBaseStats = {
     1: [58, 80, 65, 80], // total: 283

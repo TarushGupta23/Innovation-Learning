@@ -5,6 +5,7 @@ import BookModel from "../../../Classes/Rogue/Book";
 import IS from "../../../Classes/Rogue/IS";
 import { serverUrl } from "../../..";
 import axios from "axios";
+import { email } from "../../../Classes/Rogue/SampleData";
 
 export default function BooksSelect({ setDepth, setPlayerInfo, playerInfo }) {
     const [books, setBooks] = useState([]);
@@ -15,7 +16,13 @@ export default function BooksSelect({ setDepth, setPlayerInfo, playerInfo }) {
         const getBooks = async () => {
             const responce = await axios.get(`${serverUrl}/standards-list`)
             console.log('asked for books')
-            setBooks(responce.data.map(d => new BookModel(d.name, [new IS(d.id, d.name, d.content)], 0, true)));
+            setBooks(responce.data.map(d => new BookModel(d.name, [new IS(d.id, d.name, d.content)], 0, false)));
+        }
+
+        const getDiscoveredBooks = async () => {
+            const responce = await axios.get(`${serverUrl}/2d/books?email=${email}`)
+            console.log('asked for books')
+            setBooks(responce.data.map(d => new BookModel(d.name, d.content, d.rarity, true)));
         }
 
         getBooks();
