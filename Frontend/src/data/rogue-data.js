@@ -1,7 +1,8 @@
-// stats:  HP, Atk, Def, Spe
-
+import Achievement from "../classes/rogue/Achievement";
 import Item from "../classes/rogue/Item";
 
+// ==================== STATS & NATURES ====================
+// stats:  [HP, Atk, Def, Spe]
 export const criminalBaseStats = {
     1: [58, 80, 65, 80], // total: 283
     0: [65, 90, 80, 75], // total: 310
@@ -29,12 +30,6 @@ export const natures = [
     [3, 2, 'Aggressive', 'Fearless', '+10% Spe, -10% Def'],
 ]
 
-export const criminalDifficultyNames = ['Rookie', 'Thug', 'Gangster', 'Mafia']
-export const gameDifficultyNames = ['easy', 'balanced', 'hard']
-export const startBookAmt = [8, 5, 3];
-export const maxBagSize = [30, 20, 15];
-export const bookRarity = ['common', 'rare', 'epic']
-
 export function generateStats(baseStats, level, ivs, increaseStat, decreaseStat) {
     const stats = [];
     
@@ -57,18 +52,64 @@ export function generateStats(baseStats, level, ivs, increaseStat, decreaseStat)
     return stats;
 }
 
-export const gameItemList = [
+// ==================== NAMES ====================
+export const criminalDifficultyNames = ['Rookie', 'Thug', 'Gangster', 'Mafia']
+export const gameDifficultyNames = ['easy', 'balanced', 'hard']
 
+// ==================== BOOKS ====================
+export const startBookAmt = [8, 5, 3];
+export const maxBagSize = [30, 20, 15];
+export const bookRarity = ['common', 'rare', 'epic']
+export const initialDiscoveredBooksAmt = 10;
+
+export function generateInitialDiscoveredBooks(maxSize) {
+    const discoveredBookIdx = [];
+    if (maxSize < initialDiscoveredBooksAmt) {
+        discoveredBookIdx = Array.from({ length: maxSize }, (_, i) => i); // array from 0 to maxSize
+        return discoveredBookIdx;
+    }
+    while (discoveredBookIdx.length < initialDiscoveredBooksAmt) {
+        const randomIdx = Math.floor(Math.random() * maxSize);
+        if (!discoveredBookIdx.includes(randomIdx)) {
+            discoveredBookIdx.push(randomIdx);
+        }
+    }
+    return discoveredBookIdx;
+}
+
+// ==================== ITEMS & MONEY ====================
+export const initialMoney = 3000;
+
+export const gameItemList = [
     new Item("Heal Potion", 1, "dustbin", "common", "Restores 10 HP", "player", (player) => {
         player.stats[0] += 10;
     }),
-
     new Item("Antidote", 1, "dustbin", "common", "Cures poison", "player", (player) => {
         player.stats[3] = 0;
     }),
-
     new Item("Super Potion", 1, "dustbin", "common", "Restores 20 HP", "player", (player) => {
         player.stats[0] += 20;
     }),
-
 ];
+
+// ==================== ACHIEVEMENTS ====================
+export const achievementList = [
+    new Achievement("Collector's Pride", "Gather all IS books"),
+    new Achievement("Easy Peasy", "Finish the game in easy mode"),
+    new Achievement("Determined Adventurer", "Finish the game in medium mode"),
+    new Achievement("The Undefeated", "Finish the game in hard mode"),
+    new Achievement("Master of Inventory", "Use all items in the game at least once"),
+    new Achievement("Epic Discoverer", "Obtain an epic book"),
+    new Achievement("Gladiator", "win the game without healing"),
+    new Achievement("Untouchable", "Defeat three enemies without any health loss (hard mode)"),
+    new Achievement("Sniper", "Defeat any enemy in single hit"),
+    new Achievement("One-Punch Man", "Defeat any enemy in single hit (hard mode)"),
+    new Achievement("Perfection", "Achieve all other achievements"),
+    new Achievement("Close Call", "defeat a boss at 1% health (at end of level)"),
+    new Achievement("Treasure Hoarder", "Get a total of 1,000,000 gold"),
+]
+
+// ==================== BOOK-EFFECTS ====================
+export const bookEffectList = [
+    {idx: 0, name: 'freeze', desc: 'Freezes enemy for 1 turn', func: (entity) => { entity.stats[2] = 0; }},
+]

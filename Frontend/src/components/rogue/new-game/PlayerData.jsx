@@ -5,7 +5,8 @@ export default function PlayerData({ setDepth, setPlayerInfo }) {
     const colorArr = ["bg-green-400", "bg-yellow-400", "bg-red-600"];
     const borderArr = ["rounded-l-2xl", "", "rounded-r-2xl"];
 
-    const submitGame = () => {
+    const submitGame = (e) => {
+        e && e.preventDefault();
         if (!pageInfo.name || pageInfo.name === "") {
             alert("Please enter a name");
             return
@@ -22,7 +23,7 @@ export default function PlayerData({ setDepth, setPlayerInfo }) {
 
     return <section className="flex items-center justify-center flex-col gap-4 h-full">
         <h1 className="text-5xl font-bold text-white"> Start New Journey!! </h1>
-        <form className="flex flex-col gap-4 bg-gradient-to-br from-slate-700 to-slate-900 text-white rounded-xl px-10 py-8 text-lg w-[40rem]">
+        <form className="flex flex-col gap-4 bg-gradient-to-br from-slate-700 to-slate-900 text-white rounded-xl px-10 py-8 text-lg w-[40rem]" onSubmit={(e) => submitGame(e)}>
             <div>
                 <label htmlFor="name">Name: </label>
                 <input 

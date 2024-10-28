@@ -1,5 +1,5 @@
 export const serverUrl = 'http://192.168.29.67:3200';
-export const email = 'test@example.com'
+export const email = 'test22@example.com'
 
 // -------------- rogue game data --------------
 export const name = 'Villan Name'; 

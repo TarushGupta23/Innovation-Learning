@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { startBookAmt } from "../../../data/rogue-data";
+import { bookEffectList, generateInitialDiscoveredBooks, startBookAmt } from "../../../data/rogue-data";
 import Book from "../items/Book";
 import BookModel from "../../../classes/rogue/Book";
-import IS from "../../../classes/rogue/IS";
 import { serverUrl } from "../../../temp-helper";
 import axios from "axios";
 import { email } from "../../../temp-helper";
@@ -13,28 +12,49 @@ export default function BooksSelect({ setDepth, setPlayerInfo, playerInfo }) {
     const difficulty = playerInfo.difficulty;
 
     useEffect(() => {
-        const getBooks = async () => {
-            const responce = await axios.get(`${serverUrl}/standards-list`)
-            console.log('asked for books')
-            setBooks(responce.data.map(d => new BookModel(d.name, [new IS(d.id, d.name, d.content)], 0, false)));
-        }
-
         const getDiscoveredBooks = async () => {
             const responce = await axios.get(`${serverUrl}/2d/books?email=${email}`)
             console.log('asked for books')
-            setBooks(responce.data.map(d => new BookModel(d.name, d.content, d.rarity, true)));
+            
+            if (responce.data.length === 0) { // newly created player
+                const responce2 = await axios.get(`${serverUrl}/standards-list`);
+                const standardsList = responce2.data;
+                const bookIdxs = generateInitialDiscoveredBooks(standardsList.length);
+                let discoveredIS = [];
+                let booksData = [];
+                for (let i in bookIdxs) {
+                    const book = standardsList[bookIdxs[i]];
+                    discoveredIS.push(book.id);
+                    booksData.push({
+                        name: book.name, standards: [book.id], rarity: 0, effects: []
+                    })
+                }
+                axios.post(`${serverUrl}/2d/books`, {
+                    email, booksData, discoveredIS
+                }, {
+                    headers: { 'Content-Type': 'application/json' }
+                })
+
+                return booksData;
+            }
+            return responce.data;
+        }
+        
+        const setBookList = async () => {
+            const books = await getDiscoveredBooks();
+            setBooks(books.map(d => {
+                const effects = d.effects.map(e => bookEffectList[e]);
+                return new BookModel(d.name, d.standards, d.rarity, effects);
+            }));
         }
 
-        getBooks();
+        setBookList()
     }, [])
 
     const selectBook = (book) => {
         if (selectedBooks.includes(book)) {
             setSelectedBooks(selectedBooks.filter((b) => b !== book));
-        } else if (book.discovered) {
-            if (selectedBooks.length === startBookAmt[difficulty]) {
-                return
-            }
+        } else if (selectedBooks.length < startBookAmt[difficulty]) {
             setSelectedBooks([...selectedBooks, book]);
         }
     }
@@ -70,7 +90,7 @@ export default function BooksSelect({ setDepth, setPlayerInfo, playerInfo }) {
             <ul className={"flex flex-wrap gap-4 p-4 w-full "+(selectedBooks.length === startBookAmt[difficulty] ? "opacity-45" : "opacity-100")}>
                 {
                     books.map((book, index) => (
-                        <li className={"text-white flex align-center justify-center w-24 "+(book.discovered ? "cursor-pointer" : "cursor-not-allowed")} onClick={() => selectBook(book)}>
+                        <li className="text-white flex align-center justify-center w-24 cursor-pointer" onClick={() => selectBook(book)}>
                             <Book book={book} key={index} />
                         </li>
                     ))

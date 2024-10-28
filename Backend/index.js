@@ -29,7 +29,8 @@ const BookModel = model('ISData', BookSchema);
 const playerSchema = new Schema({
     email: String,
     saveFiles: Array,
-    books: Array
+    books: Array,
+    discoveredIS: Array
 }, { collection: 'Players' });
 const PlayerModel = model('PlayerData', playerSchema);
 
@@ -42,15 +43,20 @@ app.post('/upload-standards', async (req, res) => {
         res.status(500).send({ message: 'Failed to upload standards', error });
     }
 });
+/**
+ * input: { name: string, content: string }
+ * output: { message: string }
+ */
 
 app.post('/add-player', async (req, res) => {
     try {
-        const { email, saveFiles, books } = req.body;
+        const { email, saveFiles, books, discoveredIS } = req.body;
 
         const newPlayer = new PlayerModel({
             email,
             saveFiles: saveFiles || [],
-            books: books || []
+            books: books || [],
+            discoveredIS: discoveredIS || []
         });
 
         await newPlayer.save();
@@ -60,6 +66,10 @@ app.post('/add-player', async (req, res) => {
         res.status(500).send({ message: 'Failed to upload player', error });
     }
 });
+/**
+ * input: {email: string, saveFiles*: [], books*: [], discoveredIS*: string[]}
+ * output: { message: string }
+ */
 
 app.get('/standards-list', async (req, res) => {
     try {
@@ -73,6 +83,9 @@ app.get('/standards-list', async (req, res) => {
         res.send({ message: 'Failed to retrieve data', error });
     }
 });
+/**
+ * output: [ {id: string, name: string, content: string} ]
+ */
 
 app.get('/2d/files', async (req, res) => {
     const email = req.query.email;
@@ -83,7 +96,8 @@ app.get('/2d/files', async (req, res) => {
             data = new PlayerModel({
                 email,
                 saveFiles: [],
-                books: []
+                books: [],
+                discoveredIS: []
             });
             await data.save();
             return res.send([]);
@@ -104,7 +118,8 @@ app.get('/2d/books', async (req, res) => {
             data = new PlayerModel({
                 email,
                 saveFiles: [],
-                books: []
+                books: [], 
+                discoveredIS: []
             });
             await data.save();
             return res.send([]);
@@ -115,6 +130,45 @@ app.get('/2d/books', async (req, res) => {
         res.status(500).send({ message: 'Error fetching or creating player data', error });
     }
 });
+/**
+ * input: email: query-parameters
+ * output: [ {name: string, standards: string[], rarity: int, effects: int[]} ]
+ */
+
+app.post('/2d/books', async (req, res) => {
+    const { email, booksData, discoveredIS } = req.body;
+    try {
+        if (!email || !booksData[0]) {
+            return res.status(400).send({ message: "Email and book data are required." });
+        }
+
+        let player = await PlayerModel.findOne({ email });
+        if (!player) {
+            player = new PlayerModel({ email, saveFiles: [], books: [] });
+        }
+
+        booksData.forEach((book) => {
+            player.books.push(book);
+        });
+        discoveredIS.forEach((is) => {
+            !player.discoveredIS.includes(is) && player.discoveredIS.push(is);
+        })
+        
+        await player.save();
+        res.status(201).send({ message: 'Book uploaded successfully' });
+    } catch (error) {
+        console.error('Error uploading book:', error);
+        res.status(500).send({ message: 'Failed to upload book', error });
+    }
+});
+/**
+ * input: {
+ *      email: string, 
+ *      booksData: [ {name: string, standards: string[], rarity: int, effects: int[]} ], 
+ *      discoveredIS: string[]
+ * }
+ * output: { message: string }
+ */
 
 app.post('/3d/generate', async (req, res) => {
     lastReq[req.body.key] = req.body.content;
