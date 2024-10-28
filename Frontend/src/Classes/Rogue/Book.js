@@ -1,7 +1,7 @@
 export default class Book {
     constructor(name, standards = [], rarity = 0, effects = []) {
         this.name = name; // name of book : string
-        this.standards = standards; // standards it contains : IS[]
+        this.standards = standards; // ids of standards it contains : string[]
         this.rarity = rarity; // rarity of book : integer
         this.effects = effects;
     }

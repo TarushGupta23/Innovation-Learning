@@ -16,12 +16,9 @@ export default function NewGame() {
         nature: 0,
         books: []
     })
-    const [error, setError] = useState(false);
 
     const uploadData = async () => {
         const player = new Player(playerInfo.name, playerInfo.nature, playerInfo.books);
-        console.log(playerInfo.books)
-        console.log(player)
 
         const responce = await axios.post(`${serverUrl}/2d/file`, {
             email, file: {
@@ -30,9 +27,7 @@ export default function NewGame() {
                 name: playerInfo.name,
                 nature: playerInfo.nature,
                 IVs: player.IVs,
-                books: player.books.map(book => ({
-                    name: book.name, standards: book.standards.map(standard => standard.id), rarity: book.rarity, effects: book.effects.map(effect => effect.id)
-                })),
+                books: playerInfo.books,
                 items: player.items,
                 money: player.money,
                 effects: player.effects,
@@ -42,7 +37,8 @@ export default function NewGame() {
         });
 
         if (responce.data.error) {
-            setError(true);
+            navigate('/rogue');
+            alert('unable to save data');
         } else {
             navigate('/rogue/game/' + responce.data.id);
         }
@@ -56,7 +52,7 @@ export default function NewGame() {
                 return <BooksSelect setDepth={setDepth} setPlayerInfo={setPlayerInfo} playerInfo={playerInfo} />;
             case 2:
                 uploadData();
-                return <Uploading error={error} />
+                return <Uploading />
             default: 
                 return <PlayerData setDepth={setDepth} setPlayerInfo={setPlayerInfo} />
         }

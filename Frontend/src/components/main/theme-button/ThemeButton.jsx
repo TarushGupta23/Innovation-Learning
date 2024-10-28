@@ -3,7 +3,6 @@ import { FaSun, FaMoon } from "react-icons/fa";
 const ThemeButton = ({darkMode, setDarkMode}) => {
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
-        console.log(darkMode, document.documentElement.classList);
         document.documentElement.classList.toggle("dark");
     };
 

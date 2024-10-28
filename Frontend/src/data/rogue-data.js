@@ -100,16 +100,20 @@ export const achievementList = [
     new Achievement("The Undefeated", "Finish the game in hard mode"),
     new Achievement("Master of Inventory", "Use all items in the game at least once"),
     new Achievement("Epic Discoverer", "Obtain an epic book"),
-    new Achievement("Gladiator", "win the game without healing"),
+    new Achievement("Gladiator", "Win the game without healing"),
     new Achievement("Untouchable", "Defeat three enemies without any health loss (hard mode)"),
     new Achievement("Sniper", "Defeat any enemy in single hit"),
     new Achievement("One-Punch Man", "Defeat any enemy in single hit (hard mode)"),
     new Achievement("Perfection", "Achieve all other achievements"),
-    new Achievement("Close Call", "defeat a boss at 1% health (at end of level)"),
+    new Achievement("Close Call", "Defeat a boss at 1% health (at end of level)"),
     new Achievement("Treasure Hoarder", "Get a total of 1,000,000 gold"),
+    new Achievement("Every Angle", "Play the game in all natures")
 ]
 
 // ==================== BOOK-EFFECTS ====================
 export const bookEffectList = {
     0: { id: 0, name: 'freeze', desc: 'Freezes enemy for 1 turn', func: (entity) => { entity.stats[2] = 0; } },
 }
+
+// ==================== PLAYER-EFFECTS ====================
+export const gamePlayerEffectList = []

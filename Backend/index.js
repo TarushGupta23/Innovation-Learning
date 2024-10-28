@@ -148,11 +148,51 @@ app.post('/2d/books', async (req, res) => {
  * output: { message: string }
  */
 
+app.get('/2d/files', async (req, res) => {
+    const email = req.query.email;
+    let data = await PlayerModel.findOne({ email: email });
+    res.send(data.saveFiles);
+});
+/**
+ * input: email: query-parameters, gameId: path-parameters
+ * output: [ 
+ *      {
+ *         level: integer,
+ *         difficulty: integer,
+ *         name: string,
+ *         nature: integer,
+ *         IVs: int[],
+ *         books: [ {name: string, standards: string[],  rarity: int, effects: int[]} ],
+ *         items: int[],
+ *         money: int,
+ *         effects: int[],
+ *      } 
+ * ]
+ */
+
 app.get('/2d/file/:gameId', async (req, res) => {
     const email = req.query.email;
     let data = await PlayerModel.findOne({ email: email });
+    if (data.saveFiles.length <= req.params.gameId) {
+        return res.send({ message: 'Game not found', error: 'index out of bounds' });
+    }
     res.send(data.saveFiles[req.params.gameId]);
 });
+
+/**
+ * input: email: query-parameters, gameId: path-parameters
+ * output: {
+ *         level: integer,
+ *         difficulty: integer,
+ *         name: string,
+ *         nature: integer,
+ *         IVs: int[],
+ *         books: [ {name: string, standards: string[],  rarity: int, effects: int[]} ],
+ *         items: int[],
+ *         money: int,
+ *         effects: int[],
+ * }
+ */
 
 app.post('/2d/file', async (req, res) => {
     const email = req.body.email;
@@ -167,6 +207,22 @@ app.post('/2d/file', async (req, res) => {
         res.send({ message: 'Error fetching or creating player data', error });
     }
 });
+/**
+ * input: 
+ *      email: string,
+ *      file: {
+ *         level: integer,
+ *         difficulty: integer,
+ *         name: string,
+ *         nature: integer,
+ *         IVs: int[],
+ *         books: [ {name: string, standards: string[],  rarity: int, effects: int[]} ],
+ *         items: int[],
+ *         money: int,
+ *         effects: int[],
+ *      }
+ * output: { message: string }
+ */
 
 app.post('/3d/generate', async (req, res) => {
     lastReq[req.body.key] = req.body.content;

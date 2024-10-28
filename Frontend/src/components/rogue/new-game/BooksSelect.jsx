@@ -14,7 +14,6 @@ export default function BooksSelect({ setDepth, setPlayerInfo, playerInfo }) {
     useEffect(() => {
         const getDiscoveredBooks = async () => {
             const responce = await axios.get(`${serverUrl}/2d/books?email=${email}`)
-            console.log('asked for books')
             
             if (responce.data.length === 0) { // newly created player
                 const responce2 = await axios.get(`${serverUrl}/standards-list`);
@@ -41,11 +40,12 @@ export default function BooksSelect({ setDepth, setPlayerInfo, playerInfo }) {
         }
         
         const setBookList = async () => {
-            const books = await getDiscoveredBooks();
-            setBooks(books.map(d => {
+            const bookList = await getDiscoveredBooks();
+            setBooks(bookList.map(d => {
                 const effects = d.effects.map(e => bookEffectList[e]);
                 return new BookModel(d.name, d.standards, d.rarity, effects);
             }));
+            console.log(books)
         }
 
         setBookList()
@@ -81,7 +81,7 @@ export default function BooksSelect({ setDepth, setPlayerInfo, playerInfo }) {
                         selectedBooks.length===0 && <li> -- none -- </li>
                     }
                     {
-                        selectedBooks.map((book, index) => <li className="text-white" onClick={() => setSelectedBooks(selectedBooks.filter((b) => b !== book))}>
+                        selectedBooks.map((book, index) => <li key={index} className="text-white" onClick={() => setSelectedBooks(selectedBooks.filter((b) => b !== book))}>
                             <Book book={book} key={index} />
                         </li>)
                     }
