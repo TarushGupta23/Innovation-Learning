@@ -87,28 +87,6 @@ app.get('/standards-list', async (req, res) => {
  * output: [ {id: string, name: string, content: string} ]
  */
 
-app.get('/2d/files', async (req, res) => {
-    const email = req.query.email;
-
-    try {
-        let data = await PlayerModel.findOne({ email: email });
-        if (!data) {
-            data = new PlayerModel({
-                email,
-                saveFiles: [],
-                books: [],
-                discoveredIS: []
-            });
-            await data.save();
-            return res.send([]);
-        }
-        res.send(data.saveFiles);
-    } catch (error) {
-        console.error('Error fetching or creating player data:', error);
-        res.status(500).send({ message: 'Error fetching or creating player data', error });
-    }
-});
-
 app.get('/2d/books', async (req, res) => {
     const email = req.query.email;
 
@@ -169,6 +147,26 @@ app.post('/2d/books', async (req, res) => {
  * }
  * output: { message: string }
  */
+
+app.get('/2d/file/:gameId', async (req, res) => {
+    const email = req.query.email;
+    let data = await PlayerModel.findOne({ email: email });
+    res.send(data.saveFiles[req.params.gameId]);
+});
+
+app.post('/2d/file', async (req, res) => {
+    const email = req.body.email;
+
+    try {
+        let data = await PlayerModel.findOne({ email: email });
+        data.saveFiles.push(req.body.file);
+        await data.save();
+        res.send({ message: 'success', id: data.saveFiles.length - 1 });
+    } catch (error) {
+        console.error('Error fetching or creating player data:', error);
+        res.send({ message: 'Error fetching or creating player data', error });
+    }
+});
 
 app.post('/3d/generate', async (req, res) => {
     lastReq[req.body.key] = req.body.content;

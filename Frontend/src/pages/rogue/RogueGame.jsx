@@ -1,16 +1,24 @@
-import { useState } from "react";
-import HomeMenu from "./HomeMenu";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { serverUrl, email } from "../../temp-helper";
 
-export default function RogueGame() { // NOT BEING USD CURRENTLY
-    const [gamePage, setGamePage] = useState(0);
+export default function RogueGame() {
+    // const [playerData, setPlayerData] = useState({});
+    // const [level, setLevel] = useState(0);
+    const [page, setPage] = useState({});
+    const { gameId } = useParams();
 
-    const renderGamePage = () => {
-        switch (gamePage) {
-            case 0:
-                return <HomeMenu setGamePage={setGamePage} />
-            case 1:
-                return null;
+    useEffect(() => {
+        const getGameFile = async () => {
+            const responce = await axios.get(`${serverUrl}/2d/file/${gameId}?email=${email}`);
+            setPage(responce.data);
         }
-    }
-    return renderGamePage();
+        getGameFile();
+    }, [gameId]);
+    return <div className="bg-white dark:bg-slate-900">
+        <h1 className="flex justify-between p-8 text-3xl bold">
+            player name: {page.name}
+        </h1>
+    </div>;
 }

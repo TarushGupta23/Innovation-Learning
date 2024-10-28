@@ -6,6 +6,7 @@ import NewGame from "./pages/rogue/NewGame";
 import GameTutorial from "./pages/rogue/GameTutorial";
 import Login from "./pages/main/Login";
 import HomeMenu from "./pages/rogue/HomeMenu";
+import RogueGame from "./pages/rogue/RogueGame";
 
 function App() {
     const [darkMode, setDarkMode] = useState(false);
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/rogue" element={<HomeMenu />} />
                 <Route path="/rogue/new-game" element={<NewGame />} />
                 <Route path="/rogue/tutorial" element={<GameTutorial />} />
+                <Route path="/rogue/game/:gameId" element={<RogueGame />} />
                 
                 <Route path="/clueshade" element={<GameExperience />} />
             </Routes>

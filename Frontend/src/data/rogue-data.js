@@ -4,8 +4,8 @@ import Item from "../classes/rogue/Item";
 // ==================== STATS & NATURES ====================
 // stats:  [HP, Atk, Def, Spe]
 export const criminalBaseStats = {
-    1: [58, 80, 65, 80], // total: 283
-    0: [65, 90, 80, 75], // total: 310
+    0: [58, 80, 65, 80], // total: 283
+    1: [65, 90, 80, 75], // total: 310
     2: [78, 95, 80, 90], // total: 343
     3: [105, 95, 109, 100], // total: 409
 }
@@ -63,7 +63,7 @@ export const bookRarity = ['common', 'rare', 'epic']
 export const initialDiscoveredBooksAmt = 10;
 
 export function generateInitialDiscoveredBooks(maxSize) {
-    const discoveredBookIdx = [];
+    let discoveredBookIdx = [];
     if (maxSize < initialDiscoveredBooksAmt) {
         discoveredBookIdx = Array.from({ length: maxSize }, (_, i) => i); // array from 0 to maxSize
         return discoveredBookIdx;
@@ -110,6 +110,6 @@ export const achievementList = [
 ]
 
 // ==================== BOOK-EFFECTS ====================
-export const bookEffectList = [
-    {idx: 0, name: 'freeze', desc: 'Freezes enemy for 1 turn', func: (entity) => { entity.stats[2] = 0; }},
-]
+export const bookEffectList = {
+    0: { id: 0, name: 'freeze', desc: 'Freezes enemy for 1 turn', func: (entity) => { entity.stats[2] = 0; } },
+}

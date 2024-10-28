@@ -1,5 +1,6 @@
 import { Criminal } from "./Criminal";
 import Data from "../../temp-helper";
+import { gameDifficultyNames } from "../../data/rogue-data";
 
 class Game {
     constructor(player, level) {
@@ -41,7 +42,7 @@ class Game {
     generateLevel(level) {
         const lvlDifficulty = this.generateLevelDifficulty(level);
         let villan = (level % 10 != 0) ? new Criminal(Data.name, Data.crime, Data.description, Data.exactIS, Data.relatableIS, level, lvlDifficulty) : new Boss(Data.name, Data.crime, Data.description, Data.exactIS, Data.relatableIS, level, lvlDifficulty);
-        const lvlDifficultyName = difficultyNames[lvlDifficulty];
+        const lvlDifficultyName = gameDifficultyNames[lvlDifficulty];
         
         console.log(`Generated game level ${level} started with difficulty: ${lvlDifficulty} and villan: `, villan);
     }

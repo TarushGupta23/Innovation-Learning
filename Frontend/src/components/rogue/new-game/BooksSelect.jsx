@@ -65,7 +65,7 @@ export default function BooksSelect({ setDepth, setPlayerInfo, playerInfo }) {
             return
         }
         setPlayerInfo({...playerInfo, books: selectedBooks});
-        setDepth(3);
+        setDepth(2);
     }
 
     return (

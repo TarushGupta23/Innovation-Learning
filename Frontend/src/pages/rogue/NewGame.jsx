@@ -1,8 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 import PlayerData from "../../components/rogue/new-game/PlayerData";
 import BooksSelect from "../../components/rogue/new-game/BooksSelect";
+import Uploading from "../../components/rogue/new-game/Uploading";
+import { Player } from "../../classes/rogue/Player";
+import { email, serverUrl } from "../../temp-helper";
 
 export default function NewGame() {
+    const navigate = useNavigate();
     const [depth, setDepth] = useState(0)
     const [playerInfo, setPlayerInfo] = useState({
         name: "",
@@ -10,6 +16,37 @@ export default function NewGame() {
         nature: 0,
         books: []
     })
+    const [error, setError] = useState(false);
+
+    const uploadData = async () => {
+        const player = new Player(playerInfo.name, playerInfo.nature, playerInfo.books);
+        console.log(playerInfo.books)
+        console.log(player)
+
+        const responce = await axios.post(`${serverUrl}/2d/file`, {
+            email, file: {
+                level: 0,
+                difficulty: playerInfo.difficulty,
+                name: playerInfo.name,
+                nature: playerInfo.nature,
+                IVs: player.IVs,
+                books: player.books.map(book => ({
+                    name: book.name, standards: book.standards.map(standard => standard.id), rarity: book.rarity, effects: book.effects.map(effect => effect.id)
+                })),
+                items: player.items,
+                money: player.money,
+                effects: player.effects,
+            }
+        }, {
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        if (responce.data.error) {
+            setError(true);
+        } else {
+            navigate('/rogue/game/' + responce.data.id);
+        }
+    }
 
     const renderPage = () => {
         switch (depth) {
@@ -17,6 +54,11 @@ export default function NewGame() {
                 return <PlayerData setDepth={setDepth} setPlayerInfo={setPlayerInfo} />
             case 1:
                 return <BooksSelect setDepth={setDepth} setPlayerInfo={setPlayerInfo} playerInfo={playerInfo} />;
+            case 2:
+                uploadData();
+                return <Uploading error={error} />
+            default: 
+                return <PlayerData setDepth={setDepth} setPlayerInfo={setPlayerInfo} />
         }
     }
     return <div className="w-full h-[100vh] relative bg-slate-900">
