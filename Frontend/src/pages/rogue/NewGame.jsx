@@ -6,10 +6,11 @@ import BooksSelect from "../../components/rogue/new-game/BooksSelect";
 import Uploading from "../../components/rogue/new-game/Uploading";
 import { Player } from "../../classes/rogue/Player";
 import { email, serverUrl } from "../../temp-helper";
+import { startLevel } from "../../data/rogue-data";
 
 export default function NewGame() {
     const navigate = useNavigate();
-    const [depth, setDepth] = useState(0)
+    const [depth, setDepth] = useState(0);
     const [playerInfo, setPlayerInfo] = useState({
         name: "",
         difficulty: 0,
@@ -22,7 +23,7 @@ export default function NewGame() {
 
         const responce = await axios.post(`${serverUrl}/2d/file`, {
             email, file: {
-                level: 0,
+                level: startLevel,
                 difficulty: playerInfo.difficulty,
                 name: playerInfo.name,
                 nature: playerInfo.nature,

@@ -3,28 +3,37 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { serverUrl, email } from "../../temp-helper";
 import { Player } from "../../classes/rogue/Player";
-import { gameItemList, gamePlayerEffectList } from "../../data/rogue-data";
+import { gameItemList, gamePlayerEffectList, startLevel } from "../../data/rogue-data";
 import BookModel from "../../classes/rogue/Book";
 import IS from "../../classes/rogue/IS";
 import Updating from "../../components/rogue/running-game/Updating";
+import Intro from "../../components/rogue/running-game/Intro";
+import Game from "../../classes/rogue/Game";
+import Battle from "../../components/rogue/running-game/Battle";
 
 export default function RogueGame() {
     const navigate = useNavigate();
     const { gameId } = useParams();
 
     const [depth, setDepth] = useState(0);
-    const [player, setPlayer] = useState(new Player('', 0, []));
-    const [game, setGame] = useState({ level: 0, difficulty: 0 });
+    const [game, setGame] = useState(null);
+    const [level, setLevel] = useState(-1);
     const [discoveredIS, setDiscoveredIS] = useState([]);
+    const [villan, setVillan] = useState(null);
+
+    const generateLevel = () => {
+        setVillan(game.generateLevel());
+        setDepth(1);
+    }
 
     const renderPage = () => {
         switch (depth) {
             case 0:
                 return <Updating />
             case 1:
-                return // villan intro
+                return <Intro setDepth={setDepth} villan={villan} />
             case 2:
-                return // fight
+                return <Battle setDepth={setDepth} villan={villan} game={game} />
             case 3:
                 return // rewards
             default:
@@ -41,6 +50,7 @@ export default function RogueGame() {
         }
 
         const getGameFile = async () => {
+            console.log('got game file')
             const data = (await axios.get(`${serverUrl}/2d/file/${gameId}?email=${email}`)).data;
             if (data.error) {
                 navigate('/rogue');
@@ -53,15 +63,16 @@ export default function RogueGame() {
             });
             let playerEffects = data.effects.map(effectId => gamePlayerEffectList[effectId]);
 
-            setGame({
-                level: data.level, difficulty: data.difficulty
-            });
-            setPlayer(new Player(data.name, data.nature, playerBooks, data.IVs, playerItems, data.money, playerEffects));
-            setDepth(1);
+            setGame( new Game(new Player(data.name, data.nature, playerBooks, data.IVs, playerItems, data.money, playerEffects), data.level, data.difficulty) );
+            setLevel(data.level);
         }
 
         getDiscoveredIS();
     }, [gameId]);
+
+    useEffect(() => {
+        (level >= startLevel) && generateLevel()
+    }, [level]);
 
     return renderPage()
 }

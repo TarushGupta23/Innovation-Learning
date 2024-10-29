@@ -1,23 +1,22 @@
-import { Criminal } from "./Criminal";
+import { Criminal, Boss } from "./Criminal";
 import Data from "../../temp-helper";
-import { gameDifficultyNames } from "../../data/rogue-data";
+import { maxLevel } from "../../data/rogue-data";
 
-class Game {
-    constructor(player, level) {
-        this.player = player;
-        this.level = level;
+export default class Game {
+    constructor(player, level, gameDifficulty) {
+        this.player = player; // Player
+        this.level = level; // int
+        this.gameDifficulty = gameDifficulty; // int
     }
 
-    generateLevelDifficulty(level) {
-        const maxLevel = 100;
-    
-        const difficultyScale = level / maxLevel;
+    generateLevelDifficulty() {
+        const difficultyScale = this.level / maxLevel;
     
         const chances = [
-            { level: 0, chance: 20 * (1 - difficultyScale) + 10 },
-            { level: 1, chance: 15 * (1 - difficultyScale) + 10 },
-            { level: 2, chance: 10 * difficultyScale + 10 },
-            { level: 3, chance: 5 * difficultyScale + 10 }
+            { level: 0, chance: (20 * (1 - difficultyScale) + 10) * (1 - this.gameDifficulty*0.2) },
+            { level: 1, chance: (15 * (1 - difficultyScale) + 10) * (1 - this.gameDifficulty*0.1) },
+            { level: 2, chance: (10 * difficultyScale + 10) * (1 + this.gameDifficulty*0.1) },
+            { level: 3, chance: (5 * difficultyScale + 10) * (1 + this.gameDifficulty*0.2) }
         ];
         
         // Normalize chances to ensure they sum to 100%
@@ -39,18 +38,11 @@ class Game {
         return 0;  // Fallback in case no difficulty is selected
     }
 
-    generateLevel(level) {
-        const lvlDifficulty = this.generateLevelDifficulty(level);
-        let villan = (level % 10 != 0) ? new Criminal(Data.name, Data.crime, Data.description, Data.exactIS, Data.relatableIS, level, lvlDifficulty) : new Boss(Data.name, Data.crime, Data.description, Data.exactIS, Data.relatableIS, level, lvlDifficulty);
-        const lvlDifficultyName = gameDifficultyNames[lvlDifficulty];
-        
-        console.log(`Generated game level ${level} started with difficulty: ${lvlDifficulty} and villan: `, villan);
-    }
-
-    playLevel(level) {
-        // const lvlDifficulty = this.generateLevelDifficulty(level);
-        // let villan = (level % 10 != 0) ? new Criminal(Data.name, Data.crime, Data.description, Data.exactIS, Data.relatableIS, level, lvlDifficulty) : new Boss(Data.name, Data.crime, Data.description, Data.exactIS, Data.relatableIS, level, lvlDifficulty);
-
-        
+    generateLevel() {
+        const lvlDifficulty = this.generateLevelDifficulty();
+        let villan = (this.level % 10 != 0) ? 
+            new Criminal(Data.name, Data.crime, Data.description, Data.exactIS, Data.relatableIS, this.level, lvlDifficulty) : 
+            new Boss(Data.name, Data.crime, Data.description, Data.exactIS, Data.relatableIS, this.level, lvlDifficulty);
+        return villan;
     }
 }

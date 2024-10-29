@@ -1,4 +1,4 @@
-import { bossBaseStats, criminalBaseStats, natures } from "../../data/rogue-data";
+import { bossBaseStats, criminalBaseStats, natures, generateStats } from "../../data/rogue-data";
 
 export class Criminal {
     constructor(name, crime, description, exactIS, relatableIS, level, levelDifficulty) {
@@ -7,7 +7,8 @@ export class Criminal {
         this.description = description; // description of the crime
         this.crimeIS = exactIS;
         this.similarIS = relatableIS;
-        
+
+        this.levelDifficulty = levelDifficulty;
         this.baseStats = criminalBaseStats[levelDifficulty];
         this.nature = natures[Math.floor(Math.random() * natures.length)];
         

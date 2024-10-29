@@ -169,6 +169,7 @@ app.post('/2d/books', async (req, res) => {
 app.get('/2d/files', async (req, res) => {
     const email = req.query.email;
     let data = await PlayerModel.findOne({ email: email });
+    if (!data) return res.send([]);
     res.send(data.saveFiles);
 });
 /**

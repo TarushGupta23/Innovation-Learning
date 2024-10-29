@@ -1,6 +1,11 @@
 import Achievement from "../classes/rogue/Achievement";
 import Item from "../classes/rogue/Item";
 
+// ==================== GAME ====================
+export const initialMoney = 3000;
+export const maxLevel = 100;
+export const startLevel = 1;
+
 // ==================== STATS & NATURES ====================
 // stats:  [HP, Atk, Def, Spe]
 export const criminalBaseStats = {
@@ -77,9 +82,7 @@ export function generateInitialDiscoveredBooks(maxSize) {
     return discoveredBookIdx;
 }
 
-// ==================== ITEMS & MONEY ====================
-export const initialMoney = 3000;
-
+// ==================== ITEMS ====================
 export const gameItemList = [
     new Item("Heal Potion", 1, "dustbin", "common", "Restores 10 HP", "player", (player) => {
         player.stats[0] += 10;
@@ -107,7 +110,8 @@ export const achievementList = [
     new Achievement("Perfection", "Achieve all other achievements"),
     new Achievement("Close Call", "Defeat a boss at 1% health (at end of level)"),
     new Achievement("Treasure Hoarder", "Get a total of 1,000,000 gold"),
-    new Achievement("Every Angle", "Play the game in all natures")
+    new Achievement("Every Angle", "Play the game in all natures"),
+    new Achievement("Hacker", "Use a CheatCode in the game (received by playing other games)"),
 ]
 
 // ==================== BOOK-EFFECTS ====================
