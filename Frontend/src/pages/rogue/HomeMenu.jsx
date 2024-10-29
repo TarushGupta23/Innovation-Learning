@@ -1,11 +1,22 @@
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 import FileSelect from "../../components/rogue/home/FileSelect";
 import OptionBox from "../../components/rogue/home/OptionBox";
-import { file } from "../../temp-helper";
+import { email, serverUrl } from "../../temp-helper";
 
 export default function HomeMenu() {
     const navigate = useNavigate();
+    const [files, setFiles] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const getFiles = async () => {
+            const responce = await axios.get(`${serverUrl}/2d/files?email=${email}`);
+            setFiles(responce.data);
+        }
+        getFiles();
+    }, [])
 
     return <div className="w-full h-[100vh] relative">
         <div className="relative isolate pointer-events-none top-1/2">
@@ -36,12 +47,30 @@ export default function HomeMenu() {
         </div>
         <ul className="flex items-center justify-center flex-col gap-4 h-full bg-slate-900">
             <li className="relative">
-                <span className="absolute top-1/2 -left-8 -translate-y-1/2 text-white font-bold">&lt;</span>
-                <FileSelect file={file} func={() => {}} />
-                <span className="absolute top-1/2 -right-8 -translate-y-1/2 text-white font-bold">&gt;</span>
+                <span className="absolute top-1/2 -left-8 -translate-y-1/2 text-white font-bold" onClick={() => {setCurrentIndex((currentIndex - 1 + files.length) % files.length)}}>&lt;</span>
+                <ul>
+                    {files.map((file, index) => {
+                        let positionClass = "";
+                        if (index == currentIndex) {
+                            positionClass = "";
+                        } else if (index >= currentIndex + 1) {
+                            positionClass = "absolute top-1/2 -right-8 -translate-y-1/2 text-white font-bold";
+                        } else {
+                            positionClass = "absolute top-1/2 -left-8 -translate-y-1/2 text-white font-bold";
+                        }
+
+                        const displayClass = index == currentIndex ? "block" : "hidden";
+
+                        return <li key={index} className={`${positionClass} ${displayClass}`} onClick={() => navigate(`/rogue/game/${index}`)}>
+                            <FileSelect key={index} file={file} index={index} />
+                        </li>
+                    })}
+                </ul>
+                <span className="absolute top-1/2 -right-8 -translate-y-1/2 text-white font-bold" onClick={() => {setCurrentIndex((currentIndex + 1) % files.length)}}>&gt;</span>
             </li>
             <OptionBox option="New Game" func={() => {navigate("/rogue/new-game")}} />
             <OptionBox option="Tutorial" func={() => {navigate("/rogue/tutorial")}} />
+            <OptionBox option="Achievements" func={() => navigate("/")} />
             <OptionBox option="Bis Website" func={() => navigate("/")} />
         </ul>
         <img src="icons/logo.png" alt="bis logo" className="h-20 absolute bottom-6 right-6" />

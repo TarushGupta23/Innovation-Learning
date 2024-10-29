@@ -20,11 +20,11 @@ connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
 
-const BookSchema = new Schema({
+const IS_Schema = new Schema({
     name: String,
     content: String
 }, { collection: 'IS' });
-const BookModel = model('ISData', BookSchema);
+const ISModel = model('ISData', IS_Schema);
 
 const playerSchema = new Schema({
     email: String,
@@ -36,7 +36,7 @@ const PlayerModel = model('PlayerData', playerSchema);
 
 app.post('/upload-standards', async (req, res) => {
     try {
-        await BookModel.insertMany(standardsData);
+        await ISModel.insertMany(standardsData);
         res.status(201).send({ message: 'Standards uploaded successfully' });
     } catch (error) {
         console.error('Error uploading standards:', error);
@@ -73,7 +73,7 @@ app.post('/add-player', async (req, res) => {
 
 app.get('/standards-list', async (req, res) => {
     try {
-        const data = await BookModel.find({});
+        const data = await ISModel.find({});
         console.log("received list of standards");
         res.send(data.map(d => (
             { id: d._id, name: d.name, content: d.content }
@@ -85,6 +85,24 @@ app.get('/standards-list', async (req, res) => {
 });
 /**
  * output: [ {id: string, name: string, content: string} ]
+ */
+
+app.get('/2d/discovered-is', async (req, res) => {
+    const email = req.query.email;
+    try {
+        let data = await PlayerModel.findOne({ email: email });
+        const isDocuments = await ISModel.find({
+            _id: { $in: data.discoveredIS || [] }
+        });
+        res.send(isDocuments);
+    } catch (error) {
+        console.error('Error fetching or creating player data:', error);
+        res.status(500).send({ message: 'Error fetching or creating player data', error });
+    }
+});
+/**
+ * input: email: query-parameters
+ * output: [ {name: string, _id: string, content: string, _v: int} ]
  */
 
 app.get('/2d/books', async (req, res) => {
@@ -154,7 +172,7 @@ app.get('/2d/files', async (req, res) => {
     res.send(data.saveFiles);
 });
 /**
- * input: email: query-parameters, gameId: path-parameters
+ * input: email: query-parameters
  * output: [ 
  *      {
  *         level: integer,
