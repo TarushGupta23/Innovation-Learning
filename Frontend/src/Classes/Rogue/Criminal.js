@@ -21,13 +21,6 @@ export class Criminal {
         // TODO : abilitys
     }
 
-    // takeDamage(damage) {
-    //     this.health -= damage;
-    //     if (this.health <= 0) {
-    //         console.log(`${this.name} has been defeated!`);
-    //     }
-    // }
-
     // attack(player) {
     //     const damage = Math.random() * 15 + 5;
     //     player.health -= damage;

@@ -1,6 +1,6 @@
 import { Criminal, Boss } from "./Criminal";
 import Data from "../../temp-helper";
-import { maxLevel } from "../../data/rogue-data";
+import { baseDmg, critDmgMultiplier, maxLevel, relatedBaseDmg } from "../../data/rogue-data";
 
 export default class Game {
     constructor(player, level, gameDifficulty) {
@@ -44,5 +44,32 @@ export default class Game {
             new Criminal(Data.name, Data.crime, Data.description, Data.exactIS, Data.relatableIS, this.level, lvlDifficulty) : 
             new Boss(Data.name, Data.crime, Data.description, Data.exactIS, Data.relatableIS, this.level, lvlDifficulty);
         return villan;
+    }
+
+    getVillanDamageBasePower(book, villan) {
+        let power = 0
+        if (book.hasExactStandard(villan.crimeIS)) {
+            power += baseDmg[this.gameDifficulty];
+        }
+        const getCommonElements = (arr1, arr2) => arr1.filter(el => arr2.includes(el)).length;
+        const c = getCommonElements(book.standards, villan.similarIS);
+        power += c * relatedBaseDmg[this.gameDifficulty];
+        return power;
+    }
+
+    
+    calculateSimpleDamage(dmgByStats, dmgToStats, power) {
+        const dmg = (2*this.level/5 + 2)*power*dmgByStats[1]/dmgToStats[2]/50 + 2
+        const random = 80 + 20*Math.random();
+        return dmg*random/100
+        // NOTE: multiply this raw dmg by: dmg * (multiTarget? .75:1) * weatherCondition=1.5 * burnStatus(if attker is burned)=0.5
+    }
+    
+    dealDamageToVillan(book, villan) {
+        const power = this.getVillanDamageBasePower(book, villan);
+        const bookDmg = this.calculateSimpleDamage(this.player.getStats(this.level), villan.stats, power);
+        const isCrit = Math.random() < 0.2;
+        villan.takeDamage(isCrit? bookDmg*critDmgMultiplier : bookDmg);
+        return isCrit
     }
 }

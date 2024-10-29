@@ -1,4 +1,4 @@
-import { generateStats, initialMoney, playerBaseStats, natures } from '../../data/rogue-data';
+import { generateStats, initialMoney, playerBaseStats, natures, startLevel } from '../../data/rogue-data';
 
 export class Player {
     constructor(name, natureIdx, books, IVs = undefined, items = [], money = initialMoney, effects = []) {
@@ -9,8 +9,8 @@ export class Player {
         this.items = items;
         this.money = money;
         this.effects = effects;
-
-        this.getStats = (level = 1) => generateStats(playerBaseStats, level, this.IVs, this.nature[0], this.nature[1]);
+        this.getMaxHp = (level = startLevel) => this.getStats(level)[0];
+        this.getStats = (level = startLevel) => generateStats(playerBaseStats, level, this.IVs, this.nature[0], this.nature[1]);
     }
 
 

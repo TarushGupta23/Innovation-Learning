@@ -5,6 +5,9 @@ import Item from "../classes/rogue/Item";
 export const initialMoney = 3000;
 export const maxLevel = 100;
 export const startLevel = 1;
+export const baseDmg = [70, 60, 50];
+export const relatedBaseDmg = [10, 8, 5];
+export const critDmgMultiplier = 1.7;
 
 // ==================== STATS & NATURES ====================
 // stats:  [HP, Atk, Def, Spe]

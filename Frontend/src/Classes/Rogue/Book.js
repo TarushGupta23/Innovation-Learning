@@ -6,8 +6,8 @@ export default class Book {
         this.effects = effects;
     }
 
-    hasExactStandard(standard) {
-        return this.standards.includes(standard);
+    hasExactStandard(standardId) {
+        return this.standards.includes(standardId);
     }
 
     // hasRelatableStandard(standard) { 
