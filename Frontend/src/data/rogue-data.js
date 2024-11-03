@@ -6,6 +6,12 @@ export const initialMoney = 3000;
 export const maxLevel = 100;
 export const startLevel = 1;
 export const baseDmg = [70, 60, 50];
+export const villanAtkPowers = [ 
+    [40, 45, 45], // rookie for [easy, medium, hard] gamemode
+    [45, 50, 50], // thug for [easy, medium, hard] gamemode
+    [60, 65, 65], // gangster for [easy, medium, hard] gamemode
+    [65, 70, 70], // mafia for [easy, medium, hard] gamemode
+]
 export const relatedBaseDmg = [10, 8, 5];
 export const critDmgMultiplier = 1.7;
 

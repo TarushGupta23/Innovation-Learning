@@ -185,6 +185,7 @@ app.get('/2d/files', async (req, res) => {
  *         items: int[],
  *         money: int,
  *         effects: int[],
+ *         hp: int
  *      } 
  * ]
  */
@@ -210,6 +211,7 @@ app.get('/2d/file/:gameId', async (req, res) => {
  *         items: int[],
  *         money: int,
  *         effects: int[],
+ *         hp: int
  * }
  */
 
@@ -239,6 +241,7 @@ app.post('/2d/file', async (req, res) => {
  *         items: int[],
  *         money: int,
  *         effects: int[],
+ *         hp: int
  *      }
  * output: { message: string }
  */

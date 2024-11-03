@@ -1,6 +1,6 @@
 import { Criminal, Boss } from "./Criminal";
 import Data from "../../temp-helper";
-import { baseDmg, critDmgMultiplier, maxLevel, relatedBaseDmg } from "../../data/rogue-data";
+import { baseDmg, critDmgMultiplier, maxLevel, relatedBaseDmg, villanAtkPowers } from "../../data/rogue-data";
 
 export default class Game {
     constructor(player, level, gameDifficulty) {
@@ -70,6 +70,13 @@ export default class Game {
         const bookDmg = this.calculateSimpleDamage(this.player.getStats(this.level), villan.stats, power);
         const isCrit = Math.random() < 0.2;
         villan.takeDamage(isCrit? bookDmg*critDmgMultiplier : bookDmg);
+        return isCrit
+    }
+
+    dealDamageToPlayer(villan) {
+        const power = this.calculateSimpleDamage(villan.stats, this.player.getStats(this.level), villanAtkPowers[villan.levelDifficulty][this.gameDifficulty]);
+        const isCrit = Math.random() < 0.2;
+        this.player.takeDamage(isCrit? power*critDmgMultiplier : power);
         return isCrit
     }
 }

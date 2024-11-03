@@ -15,7 +15,7 @@ export default function NewGame() {
         name: "",
         difficulty: 0,
         nature: 0,
-        books: []
+        books: [],
     })
 
     const uploadData = async () => {
@@ -32,6 +32,7 @@ export default function NewGame() {
                 items: player.items,
                 money: player.money,
                 effects: player.effects,
+                hp: player.hp
             }
         }, {
             headers: { 'Content-Type': 'application/json' }

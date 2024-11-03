@@ -17,15 +17,18 @@ export class Criminal {
             return Math.floor(Math.random() * 32);
         });
         this.stats = generateStats(this.baseStats, level, this.IVs, this.nature[0], this.nature[1]);
-        this.maxHp = this.stats[0];
+        this.hp = this.stats[0];
         // TODO : abilitys
     }
 
-    // attack(player) {
-    //     const damage = Math.random() * 15 + 5;
-    //     player.health -= damage;
-    //     console.log(`${this.name} attacked and dealt ${damage} damage to ${player.name}`);
-    // }
+    takeDamage(damage) {
+        if (damage > hp) damage = hp;
+        this.hp -= damage;
+    }
+
+    isDead() {
+        return this.hp <= 0;
+    }
 }
 
 export class Boss extends Criminal {
@@ -35,6 +38,7 @@ export class Boss extends Criminal {
         // set stats according to boss
         this.baseStats = bossBaseStats[levelDifficulty]; 
         this.stats = generateStats(this.baseStats, level, this.IVs, this.nature[0], this.nature[1]);
+        this.hp = this.stats[0];
         this.specialAbilities = ["regenerate", "multiple attackers"];
     }
 }

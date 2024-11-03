@@ -1,7 +1,7 @@
 import { generateStats, initialMoney, playerBaseStats, natures, startLevel } from '../../data/rogue-data';
 
 export class Player {
-    constructor(name, natureIdx, books, IVs = undefined, items = [], money = initialMoney, effects = []) {
+    constructor(name, natureIdx, books, IVs = undefined, items = [], money = initialMoney, effects = [], hp = undefined) {
         this.name = name;
         this.nature = natures[natureIdx];
         this.IVs = IVs || [...new Array(4).fill(0)].map(_ => Math.floor(Math.random() * 32))
@@ -9,42 +9,16 @@ export class Player {
         this.items = items;
         this.money = money;
         this.effects = effects;
-        this.getMaxHp = (level = startLevel) => this.getStats(level)[0];
         this.getStats = (level = startLevel) => generateStats(playerBaseStats, level, this.IVs, this.nature[0], this.nature[1]);
+        this.hp = hp || this.getStats(startLevel)[0];
     }
 
+    takeDamage(damage) {
+        if (damage > this.hp) damage = this.hp;
+        this.hp -= damage;
+    }
 
-
-    // useBook(book, criminal, standard) {
-    //     if (book.hasExactStandard(standard)) {
-    //         criminal.takeDamage(criminal.health); // Defeat criminal in one move
-    //         console.log(`${criminal.name} defeated with exact IS: ${standard}`);
-    //     } else if (book.hasRelatableStandard(standard)) {
-    //         const damage = this.calculateDamage(standard);
-    //         criminal.takeDamage(damage);
-    //         console.log(`${criminal.name} took ${damage} damage with relatable IS: ${standard}`);
-    //     } else {
-    //         console.log(`No related IS found in the book.`);
-    //     }
-    // }
-
-    // calculateDamage(standard) {
-    //     // TODO
-    //     return Math.random() * 20 + 10;
-    // }
-
-    // heal(amount) {
-    //     this.health += amount;
-    //     if (this.health > 100) this.health = 100;
-    // }
-
-    // // Add money to the player
-    // addMoney(amount) {
-    //     this.money += amount;
-    // }
-
-    // // Add an item to inventory
-    // addItem(item) {
-    //     this.items.push(item);
-    // }
+    isDead() {  
+        return this.hp <= 0;
+    }
 }
