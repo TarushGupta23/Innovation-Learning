@@ -25,7 +25,6 @@ export default function RogueGame() {
     const generateLevel = () => {
         setVillan(game.generateLevel());
         setIntroPage({
-            villanImg: '001-test',
             introTxt: 'Hah! you thing i will let you through that easily!?? No way!!'
         })
         setDepth(1);
@@ -38,7 +37,7 @@ export default function RogueGame() {
             case 1:
                 return <Intro setDepth={setDepth} villan={villan} {...introPage} />
             case 2:
-                return <Battle setDepth={setDepth} villan={villan} game={game} />
+                return <Battle setDepth={setDepth} villan={villan} game={game} setVillan={setVillan} setGame={setGame} />
             case 3:
                 return // rewards
             default:
@@ -55,7 +54,6 @@ export default function RogueGame() {
         }
 
         const getGameFile = async () => {
-            console.log('got game file')
             const data = (await axios.get(`${serverUrl}/2d/file/${gameId}?email=${email}`)).data;
             if (data.error) {
                 navigate('/rogue');

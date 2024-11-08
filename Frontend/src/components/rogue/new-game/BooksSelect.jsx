@@ -45,7 +45,6 @@ export default function BooksSelect({ setDepth, setPlayerInfo, playerInfo }) {
                 const effects = d.effects.map(e => bookEffectList[e]);
                 return new BookModel(d.name, d.standards, d.rarity, effects);
             }));
-            console.log(books)
         }
 
         setBookList()
@@ -90,7 +89,7 @@ export default function BooksSelect({ setDepth, setPlayerInfo, playerInfo }) {
             <ul className={"flex flex-wrap gap-4 p-4 w-full "+(selectedBooks.length === startBookAmt[difficulty] ? "opacity-45" : "opacity-100")}>
                 {
                     books.map((book, index) => (
-                        <li className="text-white flex align-center justify-center w-24 cursor-pointer" onClick={() => selectBook(book)}>
+                        <li className="text-white flex align-center justify-center w-24 cursor-pointer" onClick={() => selectBook(book)} key={index}>
                             <Book book={book} key={index} />
                         </li>
                     ))

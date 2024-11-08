@@ -34,6 +34,7 @@ export const bossBaseStats = {
 export const playerBaseStats = [90, 95, 95, 90]; // total: 370
 
 export const natures = [
+    // inc, dec, name_villan, name_player, description
     [1, 2, 'ruthless', 'Brave', '+10% Atk, -10% Def'], 
     [1, 3, 'Bold', 'Determined', '+10% Atk, -10% Spe'], 
 
@@ -43,6 +44,9 @@ export const natures = [
     [3, 1, 'Greedy', 'Swift', '+10% Spe, -10% Atk'], 
     [3, 2, 'Aggressive', 'Fearless', '+10% Spe, -10% Def'],
 ]
+
+export function getNatureName(idx) { return natures[idx][3]; } // for player natures only!!
+export function getNatureDesc(idx) { return natures[idx][4]; }
 
 export function generateStats(baseStats, level, ivs, increaseStat, decreaseStat) {
     const stats = [];

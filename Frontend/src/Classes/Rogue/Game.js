@@ -79,4 +79,8 @@ export default class Game {
         this.player.takeDamage(isCrit? power*critDmgMultiplier : power);
         return isCrit
     }
+
+    playerFasterThan(villan) {
+        return this.player.getStats()[4] > villan.getStats()[4]
+    }
 }

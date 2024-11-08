@@ -17,7 +17,7 @@ app.use(json());
 
 const mongoURI = process.env.MONGO_URI;
 connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB Connected'))
+    .then(() => console.log('MongoDB Connected \n\n\n-------------SERVER ONLINE-------------'))
     .catch(err => console.log(err));
 
 const IS_Schema = new Schema({
@@ -33,6 +33,21 @@ const playerSchema = new Schema({
     discoveredIS: Array
 }, { collection: 'Players' });
 const PlayerModel = model('PlayerData', playerSchema);
+
+const fileSchema = new Schema({
+    playerId: String,
+    level: Number,
+    difficulty: Number,
+    name: String,
+    nature: Number,
+    IVs: Array,
+    books: Array,
+    items: Array,
+    money: Number,
+    effects: Array,
+    hp: Number,
+}, { collection: 'GameFiles' });
+const FileModel = model('FileData', fileSchema);
 
 app.post('/upload-standards', async (req, res) => {
     try {
@@ -168,14 +183,17 @@ app.post('/2d/books', async (req, res) => {
 
 app.get('/2d/files', async (req, res) => {
     const email = req.query.email;
-    let data = await PlayerModel.findOne({ email: email });
-    if (!data) return res.send([]);
-    res.send(data.saveFiles);
+    let playerData = await PlayerModel.findOne({ email: email });
+    if (!playerData) return res.send([]);
+    const saveFiles = FileModel.find({ _id: { $in: playerData.saveFiles } });
+    console.log(saveFiles)
+    res.send([]);
 });
 /**
  * input: email: query-parameters
  * output: [ 
  *      {
+ *         playerId: string,
  *         level: integer,
  *         difficulty: integer,
  *         name: string,
@@ -193,10 +211,10 @@ app.get('/2d/files', async (req, res) => {
 app.get('/2d/file/:gameId', async (req, res) => {
     const email = req.query.email;
     let data = await PlayerModel.findOne({ email: email });
-    if (data.saveFiles.length <= req.params.gameId) {
-        return res.send({ message: 'Game not found', error: 'index out of bounds' });
+    if (data.saveFiles.includes(req.params.gameId)) {
+        return res.send(await FileModel.findOne({ _id: req.params.gameId }));
     }
-    res.send(data.saveFiles[req.params.gameId]);
+    return res.send({ message: 'Game not found', error: 'index out of bounds' });
 });
 
 /**
@@ -220,9 +238,21 @@ app.post('/2d/file', async (req, res) => {
 
     try {
         let data = await PlayerModel.findOne({ email: email });
-        data.saveFiles.push(req.body.file);
-        await data.save();
-        res.send({ message: 'success', id: data.saveFiles.length - 1 });
+        req.body.file.playerId = data._id;
+        const newFile = new FileModel(req.body.file)
+        // const newPlayer = new PlayerModel({
+        //     email,
+        //     saveFiles: saveFiles || [],
+        //     books: books || [],
+        //     discoveredIS: discoveredIS || []
+        // });
+
+        // await newPlayer.save();
+        console.log(newFile)
+        data.saveFiles.push(newFile._id);
+        await newFile.save()
+        await data.save()
+        res.send({ message: 'success', id: newFile._id });
     } catch (error) {
         console.error('Error fetching or creating player data:', error);
         res.send({ message: 'Error fetching or creating player data', error });

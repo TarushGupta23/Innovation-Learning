@@ -61,7 +61,7 @@ export default function HomeMenu() {
 
                         const displayClass = index == currentIndex ? "block" : "hidden";
 
-                        return <li key={index} className={`${positionClass} ${displayClass}`} onClick={() => navigate(`/rogue/game/${index}`)}>
+                        return <li key={index} className={`${positionClass} ${displayClass}`} onClick={() => navigate(`/rogue/game/${file._id}`)}>
                             <FileSelect key={index} file={file} index={index} />
                         </li>
                     })}

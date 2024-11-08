@@ -9,16 +9,44 @@ export class Player {
         this.items = items;
         this.money = money;
         this.effects = effects;
-        this.getStats = (level = startLevel) => generateStats(playerBaseStats, level, this.IVs, this.nature[0], this.nature[1]);
-        this.hp = hp || this.getStats(startLevel)[0];
+        this.stats = generateStats(playerBaseStats, startLevel, this.IVs, this.nature[0], this.nature[1]);
+        this.hp = hp || this.stats[0];
     }
-
+    
+    getStatsAtLevel(level) {
+        return generateStats(playerBaseStats, level, this.IVs, this.nature[0], this.nature[1]);
+    }
+    getStats() { return this.stats; }
+    getHp() { return this.hp; }
+    getMaxHP() { return this.stats[0]; }
+    getName() { return this.name; }
+    getBooks() { return this.books; }
+    getItems() { return this.items; }
+    getMoney() { return this.money; }
+    getEffects() { return this.effects; }
+    
     takeDamage(damage) {
         if (damage > this.hp) damage = this.hp;
-        this.hp -= damage;
+        this.hp -= Math.round(damage);
+    }
+    isDead() { return this.hp <= 0; }
+
+    // addItem(item) { this.items.push(item); }
+    // removeItem(item) { this.items.splice(this.items.indexOf(item), 1); }
+    
+    addMoney(money) { this.money += money; }
+    removeMoney(money) { 
+        if (money > this.money) return false;
+        this.money -= money; 
+        return true;
     }
 
-    isDead() {  
-        return this.hp <= 0;
+    // addEffect(effect) { this.effects.push(effect); }
+    // removeEffect(effect) { this.effects.splice(this.effects.indexOf(effect), 1); }
+
+    levelUp(newLvl) {
+        const newStats = this.getStatsAtLevel(newLvl);
+        this.hp += newStats[0] - this.stats[0];
+        this.stats = newStats;
     }
 }
