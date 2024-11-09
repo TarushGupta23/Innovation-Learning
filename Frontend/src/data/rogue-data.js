@@ -12,7 +12,7 @@ export const villanAtkPowers = [
     [60, 65, 65], // gangster for [easy, medium, hard] gamemode
     [65, 70, 70], // mafia for [easy, medium, hard] gamemode
 ]
-export const relatedBaseDmg = [10, 8, 5];
+export const relatedBaseDmg = [20, 18, 15];
 export const critDmgMultiplier = 1.7;
 
 // ==================== STATS & NATURES ====================

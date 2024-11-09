@@ -47,16 +47,15 @@ export default class Game {
     }
 
     getVillanDamageBasePower(book, villan) {
-        let power = 0
+        let power = 10
         if (book.hasExactStandard(villan.crimeIS)) {
-            power += baseDmg[this.gameDifficulty];
+            power = baseDmg[this.gameDifficulty];
         }
         const getCommonElements = (arr1, arr2) => arr1.filter(el => arr2.includes(el)).length;
         const c = getCommonElements(book.standards, villan.similarIS);
         power += c * relatedBaseDmg[this.gameDifficulty];
         return power;
     }
-
     
     calculateSimpleDamage(dmgByStats, dmgToStats, power) {
         const dmg = (2*this.level/5 + 2)*power*dmgByStats[1]/dmgToStats[2]/50 + 2

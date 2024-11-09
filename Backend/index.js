@@ -185,9 +185,8 @@ app.get('/2d/files', async (req, res) => {
     const email = req.query.email;
     let playerData = await PlayerModel.findOne({ email: email });
     if (!playerData) return res.send([]);
-    const saveFiles = FileModel.find({ _id: { $in: playerData.saveFiles } });
-    console.log(saveFiles)
-    res.send([]);
+    const saveFiles = await FileModel.find({ _id: { $in: playerData.saveFiles } });
+    res.send(saveFiles);
 });
 /**
  * input: email: query-parameters

@@ -5,8 +5,8 @@ export const email = 'tarush@hihopi.com'
 export const name = 'Kalia'; 
 export const crime = 'Roberry in jewel shop'
 export const description = 'this is some sample description'
-export const exactIS = '671cf01009a2c4348a04656e'
-export const relatableIS = ['671cf01009a2c4348a04656e', '671cf01009a2c4348a04656e']
+export const exactIS = '671cd2578304af12e59cdde3'
+export const relatableIS = ['671cd2578304af12e59cdde5', '671cd2578304af12e59cdde2']
 
 export const file = {
     id: 1,

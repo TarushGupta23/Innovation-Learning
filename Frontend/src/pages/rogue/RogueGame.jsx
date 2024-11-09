@@ -10,6 +10,7 @@ import Updating from "../../components/rogue/running-game/Updating";
 import Intro from "../../components/rogue/running-game/Intro";
 import Game from "../../classes/rogue/Game";
 import Battle from "../../components/rogue/running-game/Battle";
+import BattleEnd from "../../components/rogue/running-game/BattleEnd";
 
 export default function RogueGame() {
     const navigate = useNavigate();
@@ -39,7 +40,7 @@ export default function RogueGame() {
             case 2:
                 return <Battle setDepth={setDepth} villan={villan} game={game} setVillan={setVillan} setGame={setGame} />
             case 3:
-                return // rewards
+                return <BattleEnd setDepth={setDepth} villan={villan} game={game} setGame={setGame} />// - rewards or game lost - 
             default:
                 return // shop
         }
@@ -59,7 +60,7 @@ export default function RogueGame() {
                 navigate('/rogue');
                 alert('unable to load data');
             }
-            
+
             let playerItems = data.items.map(itemId => gameItemList[itemId]);
             let playerBooks = data.books.map(book => {
                 return new BookModel(book.name, book.standards, book.rarity, book.effects);

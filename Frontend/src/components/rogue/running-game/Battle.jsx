@@ -20,7 +20,7 @@ export default function Battle({setDepth, villan, game, setVillan, setGame}) {
         }
         if (game.player.isDead()) {
             setCurrDialog('You Died')
-            // return setDepth(3);
+            return setDepth(3);
         }
     }
 
@@ -35,6 +35,7 @@ export default function Battle({setDepth, villan, game, setVillan, setGame}) {
         }
         if (villan.isDead()) {
             setCurrDialog('Villan Died')
+            console.log('villan died');
             return setDepth(3);
         }
     }
@@ -81,9 +82,9 @@ export default function Battle({setDepth, villan, game, setVillan, setGame}) {
     
     return <div className="flex flex-col gap-4 h-full bg-red-100 p-10">
         <div className="flex items-center justify-end">
-            <div className="flex flex-col bg-blue-300 gap-2 justify-start items-start">
-                <div className={`relative bg-orange-500 h-4 transition-all delay-100 ease-in-out`} style={{width: Math.floor(villan.getHp()/villan.getMaxHP()*100)+"%" }}>
-                    {/* <div className="absolute bg-red-500 w-full h-full top-0 left-0" /> */}
+            <div className="flex flex-col bg-blue-300 gap-2 justify-start items-start relative">
+                <div className={`bg-orange-500 h-4 transition-all delay-150 ease-out`} style={{width: Math.floor(villan.getHp()/villan.getMaxHP()*100)+"%" }}>
+                    <div className="absolute bg-red-500 h-4 top-0 left-0" style={{width: Math.floor(villan.getHp()/villan.getMaxHP()*100)+"%" }}/>
                 </div>
                 <img src={`/2dGame/villans/battle/${villan.getImg()}.png`} alt="villan battle icon" className="h-44 object-contain" />
                 <p>
@@ -93,9 +94,9 @@ export default function Battle({setDepth, villan, game, setVillan, setGame}) {
         </div>
         
         <div className="flex items-center justify-start">
-            <div className="flex flex-col bg-blue-300 gap-2 justify-start items-start">
-                <div className={`relative bg-orange-500 h-4 transition-all delay-100 ease-in-out`} style={{width: Math.floor(game.player.getHp()/game.player.getMaxHP()*100)+"%" }}>
-                    {/* <div className="absolute bg-red-500 w-full h-full top-0 left-0" /> */}
+            <div className="flex flex-col bg-blue-300 gap-2 justify-start items-start relative">
+                <div className={`bg-yellow-500 h-4 transition-all delay-150 ease-out`} style={{width: Math.floor(game.player.getHp()/game.player.getMaxHP()*100)+"%" }}>
+                    <div className="absolute bg-green-500 h-4 top-0 left-0" style={{width: Math.floor(game.player.getHp()/game.player.getMaxHP()*100)+"%" }} />
                 </div>
                 <img src={`/2dGame/villans/battle/${villan.getImg()}.png`} alt="villan battle icon" className="h-44 object-contain" />
                 <p>
